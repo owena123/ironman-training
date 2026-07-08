@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ironman 70.3 — Optimized Year Plan</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+:root {
+  --bg:#080c10;--surface:#0e1318;--card:#121820;--border:#1c2530;
+  --swim:#0ea5e9;--bike:#f59e0b;--run:#22c55e;--brick:#a855f7;
+  --text:#e2e8f4;--muted:#64748b;--faint:#0a0f14;--gym:#ef4444;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
+
+.hero{padding:40px 32px 32px;background:linear-gradient(150deg,#080c10,#0d1520);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(245,158,11,0.03)1px,transparent 1px),linear-gradient(90deg,rgba(245,158,11,0.03)1px,transparent 1px);background-size:48px 48px}
+.hero-glow{position:absolute;top:-80px;left:-60px;width:500px;height:320px;background:radial-gradient(ellipse,rgba(245,158,11,0.07)0%,transparent 65%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:-60px;right:-40px;width:400px;height:260px;background:radial-gradient(ellipse,rgba(168,85,247,0.05)0%,transparent 65%);pointer-events:none}
+.hero-inner{position:relative}
+.hero-eye{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--bike);text-transform:uppercase;margin-bottom:10px}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,6rem);line-height:.9;letter-spacing:2px;margin-bottom:16px}
+.hero h1 .d{color:#1a1a0a}.hero h1 .l{color:var(--text)}.hero h1 .a{color:var(--bike)}
+.hero-sub{color:var(--muted);font-size:.85rem;max-width:560px;margin-bottom:24px}
+.hero-pills{display:flex;gap:10px;flex-wrap:wrap}
+.hero-pill{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 16px;text-align:center}
+.hero-pill-num{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--bike);display:block;line-height:1}
+.hero-pill-lbl{font-size:.6rem;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px}
+
+.topnav{display:flex;background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto;padding:0 16px;gap:2px;position:sticky;top:0;z-index:100}
+.topnav-btn{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:13px 16px;cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.topnav-btn:hover{color:var(--text)}
+.topnav-btn.active{color:var(--bike);border-bottom-color:var(--bike)}
+
+.panel{display:none;padding:28px 24px;max-width:1100px;margin:0 auto}
+.panel.active{display:block}
+
+.phase-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.phase-btn{font-size:.72rem;font-weight:600;padding:7px 14px;border-radius:6px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all .15s}
+.phase-btn:hover{color:var(--text)}
+.phase-btn.active{background:rgba(245,158,11,.12);border-color:var(--bike);color:var(--bike)}
+
+.week-acc{margin-bottom:10px;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.week-header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer;background:var(--card);user-select:none;transition:background .15s;flex-wrap:wrap;gap:8px}
+.week-header:hover{background:#161e28}
+.week-header-left{display:flex;align-items:center;gap:12px}
+.week-num{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--bike);line-height:1;min-width:32px}
+.week-title-text{font-size:.88rem;font-weight:600}
+.week-subtitle{font-size:.72rem;color:var(--muted)}
+.week-meta{display:flex;gap:8px;align-items:center}
+.week-hrs{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted);background:var(--surface);padding:3px 8px;border-radius:4px}
+.week-chevron{color:var(--muted);font-size:.9rem;flex-shrink:0}
+.week-body{display:none;background:var(--faint)}
+.week-body.open{display:block}
+
+.day-card{border-bottom:1px solid var(--border);padding:14px 18px;display:grid;grid-template-columns:90px 1fr;gap:16px;align-items:start}
+.day-card:last-child{border-bottom:none}
+.day-label{display:flex;flex-direction:column;gap:4px}
+.day-name{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px}
+.day-time{font-size:.58rem;color:#2a3a4a;font-family:'JetBrains Mono',monospace}
+.day-sessions{display:flex;flex-direction:column;gap:6px}
+.session{border-radius:6px;padding:9px 12px}
+.session-title{font-size:.8rem;font-weight:600;margin-bottom:3px}
+.session-desc{font-size:.75rem;color:var(--muted);line-height:1.5}
+.session-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.stag{font-size:.6rem;font-family:'JetBrains Mono',monospace;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:.5px}
+
+.s-swim{background:rgba(14,165,233,.1);border:1px solid rgba(14,165,233,.2)}.s-swim .session-title{color:var(--swim)}
+.s-bike{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.s-bike .session-title{color:var(--bike)}
+.s-run{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2)}.s-run .session-title{color:var(--run)}
+.s-brick{background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2)}.s-brick .session-title{color:var(--brick)}
+.s-gym{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25)}.s-gym .session-title{color:var(--gym)}
+.s-rest{background:rgba(55,65,81,.15);border:1px solid rgba(55,65,81,.2)}.s-rest .session-title{color:var(--muted)}
+.s-dryland{background:rgba(14,165,233,.06);border:1px solid rgba(14,165,233,.15)}.s-dryland .session-title{color:#67c8f0}
+
+.t-swim{background:rgba(14,165,233,.12);color:var(--swim)}
+.t-bike{background:rgba(245,158,11,.12);color:var(--bike)}
+.t-run{background:rgba(34,197,94,.12);color:var(--run)}
+.t-z1{background:rgba(100,116,139,.15);color:#94a3b8}
+.t-z2{background:rgba(14,165,233,.12);color:var(--swim)}
+.t-z3{background:rgba(168,85,247,.12);color:var(--brick)}
+.t-ss{background:rgba(245,158,11,.12);color:var(--bike)}
+.t-vo2{background:rgba(239,68,68,.15);color:#ef4444}
+.t-rest{background:rgba(55,65,81,.2);color:var(--muted)}
+.t-gym{background:rgba(239,68,68,.12);color:var(--gym)}
+.t-brick{background:rgba(168,85,247,.15);color:var(--brick)}
+.t-css{background:rgba(14,165,233,.18);color:#38bdf8}
+
+.phase-intro{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:22px;margin-bottom:24px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:640px){.phase-intro{grid-template-columns:1fr}}
+.pi-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.pi-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:1px;margin-bottom:8px}
+.pi-desc{font-size:.8rem;color:var(--muted);line-height:1.7;margin-bottom:12px}
+.pi-goals{list-style:none}
+.pi-goals li{font-size:.78rem;color:var(--muted);padding:4px 0;border-bottom:1px solid var(--border);display:flex;gap:8px}
+.pi-goals li:last-child{border-bottom:none}
+.pi-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start}
+.pi-stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px}
+.pi-stat-num{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;line-height:1;margin-bottom:2px}
+.pi-stat-lbl{font-size:.65rem;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px}
+
+.info-box{background:var(--faint);border:1px solid var(--border);border-left:3px solid var(--bike);border-radius:6px;padding:13px 17px;font-size:.78rem;color:var(--muted);line-height:1.6;margin-bottom:18px}
+.info-box b{color:var(--text)}
+.info-box.swim{border-left-color:var(--swim)}
+.info-box.gym{border-left-color:var(--gym)}
+.info-box.run{border-left-color:var(--run)}
+
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:24px}
+.opt-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px}
+.opt-icon{font-size:1.4rem;margin-bottom:8px}
+.opt-title{font-size:.85rem;font-weight:700;margin-bottom:10px}
+.opt-list{list-style:none}
+.opt-list li{font-size:.75rem;color:var(--muted);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;line-height:1.4}
+.opt-list li:last-child{border-bottom:none}
+.opt-list li::before{content:'→';flex-shrink:0}
+
+.gym-split-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px}
+@media(max-width:640px){.gym-split-grid{grid-template-columns:1fr}}
+.gym-card{background:var(--card);border:1px solid rgba(239,68,68,.3);border-radius:10px;padding:18px;border-top:3px solid var(--gym)}
+.gym-card-title{font-size:.85rem;font-weight:700;color:var(--gym);margin-bottom:4px}
+.gym-card-day{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);margin-bottom:10px}
+.gym-ex{list-style:none}
+.gym-ex li{font-size:.76rem;color:var(--muted);padding:4px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;gap:8px}
+.gym-ex li:last-child{border-bottom:none}
+.gym-sets{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--gym);white-space:nowrap}
+
+.ov-timeline{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;margin-bottom:20px}
+@media(max-width:700px){.ov-timeline{grid-template-columns:repeat(6,1fr)}}
+.ov-month{border-radius:7px;padding:11px 8px;text-align:center;cursor:pointer;border:1px solid transparent;transition:transform .15s}
+.ov-month:hover{transform:translateY(-2px)}
+.ov-month.off{background:#111820;border-color:#1c2a38}
+.ov-month.base{background:linear-gradient(135deg,#0c2030,#0e3040);border-color:rgba(14,165,233,.35)}
+.ov-month.build{background:linear-gradient(135deg,#1a1200,#2a1e00);border-color:rgba(245,158,11,.35)}
+.ov-month.peak{background:linear-gradient(135deg,#1a0800,#2a1000);border-color:rgba(239,68,68,.35)}
+.ov-month.taper{background:linear-gradient(135deg,#0a1800,#102200);border-color:rgba(34,197,94,.35)}
+.ov-month-name{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.ov-month-phase{font-size:.7rem;font-weight:700;line-height:1.2;margin-bottom:4px}
+.ov-month-hrs{font-family:'JetBrains Mono',monospace;font-size:.55rem;opacity:.6}
+.off .ov-month-phase{color:#4a5568}.base .ov-month-phase{color:var(--swim)}.build .ov-month-phase{color:var(--bike)}.peak .ov-month-phase{color:#ef4444}.taper .ov-month-phase{color:var(--run)}
+
+.ov-legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.ov-leg-item{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--muted)}
+.ov-leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+
+.ov-phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px}
+.ov-phase-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;cursor:pointer;transition:border-color .15s,transform .15s;position:relative;overflow:hidden}
+.ov-phase-card:hover{border-color:rgba(245,158,11,.4);transform:translateY(-2px)}
+.ov-phase-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.ov-phase-card.off::before{background:#374151}.ov-phase-card.base::before{background:var(--swim)}.ov-phase-card.build::before{background:var(--bike)}.ov-phase-card.peak::before{background:#ef4444}.ov-phase-card.taper::before{background:var(--run)}
+.ov-pc-eye{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.off .ov-pc-eye{color:#4a5568}.base .ov-pc-eye{color:var(--swim)}.build .ov-pc-eye{color:var(--bike)}.peak .ov-pc-eye{color:#ef4444}.taper .ov-pc-eye{color:var(--run)}
+.ov-pc-title{font-size:.95rem;font-weight:700;margin-bottom:4px}
+.ov-pc-dates{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);margin-bottom:10px}
+.ov-pc-desc{font-size:.75rem;color:var(--muted);line-height:1.5}
+.ov-pc-goto{display:inline-block;margin-top:10px;font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--bike);text-transform:uppercase;letter-spacing:1px}
+
+.rec-badge{display:inline-block;background:rgba(34,197,94,.12);color:var(--run);border:1px solid rgba(34,197,94,.25);font-size:.6rem;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:1px;margin-left:8px;vertical-align:middle}
+.sim-badge{display:inline-block;background:rgba(168,85,247,.15);color:var(--brick);border:1px solid rgba(168,85,247,.3);font-size:.6rem;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:1px;margin-left:8px;vertical-align:middle}
+
+hr{border:none;border-top:1px solid var(--border);margin:24px 0}
+@media(max-width:520px){.day-card{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-grid"></div><div class="hero-glow"></div><div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-eye">Optimized · 70.3 Half Ironman · Jul 2025 → Race Day Jun 2026</div>
+    <h1><span class="d">IRON</span><span class="l">MAN</span><br><span class="a">70.3 OPTIMIZED</span></h1>
+    <p class="hero-sub">Rebuilt from the ground up. Anterior/posterior upper split 2×/week. Proper run structure. Race-pace bricks. CSS swim from week 1. Matt Dixon & Friel periodization principles. Your 7am–4pm schedule. No pool until Aug 21.</p>
+    <div class="hero-pills">
+      <div class="hero-pill"><span class="hero-pill-num">1.2</span><span class="hero-pill-lbl">Mile Swim</span></div>
+      <div class="hero-pill"><span class="hero-pill-num">56</span><span class="hero-pill-lbl">Mile Bike</span></div>
+      <div class="hero-pill"><span class="hero-pill-num">13.1</span><span class="hero-pill-lbl">Mile Run</span></div>
+      <div class="hero-pill"><span class="hero-pill-num">Ant/Post</span><span class="hero-pill-lbl">Gym Split</span></div>
+      <div class="hero-pill"><span class="hero-pill-num">2×/wk</span><span class="hero-pill-lbl">Muscle Freq</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="topnav">
+  <button class="topnav-btn active" onclick="switchTop('overview',this)">Overview</button>
+  <button class="topnav-btn" onclick="switchTop('gym',this)">💪 Gym Split</button>
+  <button class="topnav-btn" onclick="switchTop('offseason',this)">🏗️ Off-Season</button>
+  <button class="topnav-btn" onclick="switchTop('base',this)">🌊 Base</button>
+  <button class="topnav-btn" onclick="switchTop('build',this)">🔥 Build</button>
+  <button class="topnav-btn" onclick="switchTop('peak',this)">⚡ Peak</button>
+  <button class="topnav-btn" onclick="switchTop('taper',this)">🏁 Taper</button>
+  <button class="topnav-btn" onclick="switchTop('raceday',this)">🏅 Race Day</button>
+  <button class="topnav-btn" onclick="switchTop('nutrition',this)">🔋 Nutrition</button>
+</nav>
+
+<!-- OVERVIEW -->
+<div class="panel active" id="panel-overview">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:3px;color:var(--bike);text-transform:uppercase;margin-bottom:8px">Optimized Year Plan</div>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:1px;margin-bottom:20px">What Makes This Plan Optimal</h2>
+
+  <div class="opt-grid">
+    <div class="opt-card">
+      <div class="opt-icon">💪</div>
+      <div class="opt-title" style="color:var(--gym)">Anterior/Posterior Gym Split</div>
+      <ul class="opt-list">
+        <li>Every upper body muscle hit twice per week — proven superior for strength and hypertrophy vs once/week</li>
+        <li>Lower volume per session = less muscle damage = faster recovery between tri sessions</li>
+        <li>Mon AM: Anterior upper (chest, front delts, triceps) + easy run</li>
+        <li>Wed AM: Posterior upper (back, rear delts, biceps, rotator cuff) + easy run</li>
+        <li>Fri PM: Legs + Core — once weekly because bike/run already train your legs hard</li>
+        <li>Gym peaks in Off-Season, tapers through Base, becomes maintenance in Build, drops entirely in Peak</li>
+      </ul>
+    </div>
+    <div class="opt-card">
+      <div class="opt-icon">🏃</div>
+      <div class="opt-title" style="color:var(--run)">Proper Run Structure</div>
+      <ul class="opt-list">
+        <li>4 runs per week minimum — not just bolted-on gym day jogs</li>
+        <li>Dedicated tempo run session weekly from Base phase</li>
+        <li>Strides added in Base W5+ — neurological speed without fatigue cost</li>
+        <li>Long run progression: 60 min → 1:45 with proper Zone 2 pacing</li>
+        <li>Off-the-bike run (brick) treated as a separate quality session, not an afterthought</li>
+        <li>Race-pace half marathon effort bricks in Peak — not just "moderate"</li>
+      </ul>
+    </div>
+    <div class="opt-card">
+      <div class="opt-icon">🏊</div>
+      <div class="opt-title" style="color:var(--swim)">Swim From Day One</div>
+      <ul class="opt-list">
+        <li>CSS (Critical Swim Speed) work begins in Base W1 — not Build. Earlier speed stimulus = faster adaptation</li>
+        <li>Dryland technique work Jul–Aug 20 means pool day 1 is not starting from zero</li>
+        <li>Technique drills mandatory every session — poor mechanics at volume = injury and inefficiency</li>
+        <li>Open water practice added in Build when accessible</li>
+        <li>Race-pace 1,900m sets in Peak — 1.2mi at your actual race pace</li>
+        <li>Wetsuit practice before race day — 3–5 min free time if legal</li>
+      </ul>
+    </div>
+    <div class="opt-card">
+      <div class="opt-icon">🚴</div>
+      <div class="opt-title" style="color:var(--bike)">Race-Specific Bike Intensity</div>
+      <ul class="opt-list">
+        <li>70.3 bike target: 75–85% FTP — NOT the conservative 68% of full IM</li>
+        <li>Sweet spot intervals (88–94% FTP) from Base W3 — builds the power you race at</li>
+        <li>VO2 intervals introduced in Build — raises the ceiling above race pace</li>
+        <li>Race-power bricks (75–82% FTP) in Build and Peak — legs learn what race day feels like</li>
+        <li>2 full SIM DAYS in Peak: 56mi at race power → immediate half marathon</li>
+        <li>No junk miles — every ride has a purpose</li>
+      </ul>
+    </div>
+    <div class="opt-card">
+      <div class="opt-icon">📈</div>
+      <div class="opt-title" style="color:var(--brick)">Matt Dixon Periodization</div>
+      <ul class="opt-list">
+        <li>Strength PEAKS early (Off-Season) then systematically reduces — not a slow fade</li>
+        <li>Polarized training: 80% easy, 20% hard — no moderate junk zone in easy weeks</li>
+        <li>Recovery week every 4th week is mandatory — adaptation happens in rest, not stress</li>
+        <li>Brick workouts progress from easy → moderate → race pace over 6 months</li>
+        <li>Taper: 3 weeks, 40% volume drop each week, intensity maintained — arrives fresh and sharp</li>
+        <li>Race-week: 4 short sessions, nothing hard, just openers</li>
+      </ul>
+    </div>
+    <div class="opt-card">
+      <div class="opt-icon">⏰</div>
+      <div class="opt-title">Your Schedule Reality</div>
+      <ul class="opt-list">
+        <li>Work 7am–4pm every day — all weekday sessions are 5–6:30am or 4:30–6:30pm</li>
+        <li>No pool until Aug 21 — dryland + bike + run + gym fills July/August</li>
+        <li>Weekends: Saturday is your big training day. Sunday is structured recovery.</li>
+        <li>Every 4th week volume drops 35–40% — these are not optional</li>
+        <li>Sunday = active recovery run or easy spin. Not full rest — keeps aerobic stimulus without fatigue</li>
+        <li>Off-Season Sunday = FULL REST. Base onward = easy active recovery Sunday</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ov-timeline" id="ov-timeline"></div>
+  <div class="ov-legend">
+    <div class="ov-leg-item"><div class="ov-leg-dot" style="background:#374151"></div>Off-Season</div>
+    <div class="ov-leg-item"><div class="ov-leg-dot" style="background:var(--swim)"></div>Base</div>
+    <div class="ov-leg-item"><div class="ov-leg-dot" style="background:var(--bike)"></div>Build</div>
+    <div class="ov-leg-item"><div class="ov-leg-dot" style="background:#ef4444"></div>Peak</div>
+    <div class="ov-leg-item"><div class="ov-leg-dot" style="background:var(--run)"></div>Taper</div>
+  </div>
+  <div class="ov-phases">
+    <div class="ov-phase-card off" onclick="switchTop('offseason',document.querySelectorAll('.topnav-btn')[2])">
+      <div class="ov-pc-eye">Phase 0</div><div class="ov-pc-title">Off-Season</div>
+      <div class="ov-pc-dates">Jul 1 – Aug 20 · 7 weeks</div>
+      <div class="ov-pc-desc">No pool. Max gym strength (Ant/Post 2×/wk + legs). Bike base. Run base. Dryland swim. Sunday = full rest.</div>
+      <div class="ov-pc-goto">→ View schedule</div>
+    </div>
+    <div class="ov-phase-card base" onclick="switchTop('base',document.querySelectorAll('.topnav-btn')[3])">
+      <div class="ov-pc-eye">Phase 1</div><div class="ov-pc-title">Base Phase</div>
+      <div class="ov-pc-dates">Aug 21 – Nov 15 · 13 weeks</div>
+      <div class="ov-pc-desc">Pool opens. CSS swim from week 1. Tempo runs. Sweet spot bike W3+. Gym tapers full→moderate→light.</div>
+      <div class="ov-pc-goto">→ View schedule</div>
+    </div>
+    <div class="ov-phase-card build" onclick="switchTop('build',document.querySelectorAll('.topnav-btn')[4])">
+      <div class="ov-pc-eye">Phase 2</div><div class="ov-pc-title">Build Phase</div>
+      <div class="ov-pc-dates">Nov 16 – Feb 28 · 15 weeks</div>
+      <div class="ov-pc-desc">VO2 bike intervals. Race-pace bricks every Saturday. Gym = ant/post maintenance only. Legs drop Feb.</div>
+      <div class="ov-pc-goto">→ View schedule</div>
+    </div>
+    <div class="ov-phase-card peak" onclick="switchTop('peak',document.querySelectorAll('.topnav-btn')[5])">
+      <div class="ov-pc-eye">Phase 3</div><div class="ov-pc-title">Peak Phase</div>
+      <div class="ov-pc-dates">Mar 1 – May 15 · 11 weeks</div>
+      <div class="ov-pc-desc">No gym. Two full SIM DAYS. Race-power bike. Half marathon pace runs. Open water swims.</div>
+      <div class="ov-pc-goto">→ View schedule</div>
+    </div>
+    <div class="ov-phase-card taper" onclick="switchTop('taper',document.querySelectorAll('.topnav-btn')[6])">
+      <div class="ov-pc-eye">Phase 4</div><div class="ov-pc-title">Taper</div>
+      <div class="ov-pc-dates">May 16 – Race Day · 3 weeks</div>
+      <div class="ov-pc-desc">Volume -40% per week. Intensity stays sharp. Sleep 9 hrs. Arrive fresh.</div>
+      <div class="ov-pc-goto">→ View schedule</div>
+    </div>
+  </div>
+  <div class="info-box"><b>Work schedule built in:</b> 7am–4pm job = 5–6:30am AM sessions or 4:30–6:30pm PM sessions on weekdays. Weekends are open. Every week accounts for this — no session exceeds your available windows.</div>
+</div>
+
+<!-- GYM SPLIT -->
+<div class="panel" id="panel-gym">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:3px;color:var(--gym);text-transform:uppercase;margin-bottom:8px">Gym Program</div>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:1px;margin-bottom:16px">Anterior · Posterior · Upper Split</h2>
+
+  <div class="info-box gym"><b>The split:</b> Anterior (Mon) trains the front chain — chest, quads, front delts, biceps, forearms, abs. Posterior (Wed) trains the back chain — back, glutes/hamstrings, rear delts, triceps, calves. Upper (Fri) hits everything twice with a full upper body volume session. Every muscle gets hit 2×/week across the three days. <b>1–2 sets, 6–8–10 rep ranges, strength focus</b> — this keeps sessions short enough to not interfere with swim/bike/run while still producing meaningful strength gains. Low volume per session also means minimal soreness going into the next day's training.</div>
+
+  <div class="gym-split-grid" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="gym-card">
+      <div class="gym-card-title">🔵 Anterior</div>
+      <div class="gym-card-day">Monday PM · Front chain focus · 1–2 sets · 6–8–10 reps</div>
+      <ul class="gym-ex">
+        <li style="color:var(--swim);font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 0">Chest ×2</li>
+        <li>Bench Press <span class="gym-sets">2×6</span></li>
+        <li>Incline DB Press <span class="gym-sets">1×10</span></li>
+        <li style="color:var(--swim);font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 0">Quad ×1</li>
+        <li>Back Squat <span class="gym-sets">2×8</span></li>
+        <li style="color:var(--swim);font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 0">Abs ×1</li>
+        <li>Dead Bug or Ab Wheel <span class="gym-sets">2×10</span></li>
+        <li style="color:var(--swim);font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 0">Shoulder ×1</li>
+        <li>Seated Overhead Press <span class="gym-sets">2×8</span></li>
+        <li style="color:var(--swim);font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 0">Bicep ×1</li>
+        <li>Barbell Curl <span class="gym-sets">2×10</span></li>
+        <li style="color:var(--swim);font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 0">Forearm ×1</li>
+        <li>Wrist Roller or Reverse Curl <span class="gym-sets">2×10</span></li>
+      </ul>
+    </div>
+    <div class="gym-card">
+      <div class="gym-card-title">🟠 Posterior</div>
+      <div class="gym-card-day">Wednesday PM · Back chain focus · 1–2 sets · 6–8–10 reps</div>
+      <ul class="gym-ex">
+        <li style="color:var(--bike);font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 0">Back ×2</li>
+        <li>Barbell Row <span class="gym-sets">2×6</span></li>
+        <li>Chest-Supported DB Row <span class="gym-sets">1×10</span></li>
+        <li style="color:var(--bike);font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 0">Glutes / Hamstrings ×1</li>
+        <li>Bulgarian Split Squat or Hip Thrust <span class="gym-sets">2×8 each</span></li>
+        <li style="color:var(--bike);font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 0">Tricep ×1</li>
+        <li>Close-Grip Bench or Skull Crusher <span class="gym-sets">2×8</span></li>
+        <li style="color:var(--bike);font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 0">Calves ×1</li>
+        <li>Weighted Calf Raise <span class="gym-sets">2×10</span></li>
+        <li style="color:var(--bike);font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 0">Shoulder ×1</li>
+        <li>Face Pulls or Rear Delt Fly <span class="gym-sets">2×10</span></li>
+      </ul>
+    </div>
+    <div class="gym-card">
+      <div class="gym-card-title">🟢 Upper</div>
+      <div class="gym-card-day">Friday PM · Full upper volume · 1–2 sets · 6–8–10 reps</div>
+      <ul class="gym-ex">
+        <li style="color:var(--run);font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 0">Shoulders ×2</li>
+        <li>Overhead Press <span class="gym-sets">2×6</span></li>
+        <li>Lateral Raises <span class="gym-sets">2×10</span></li>
+        <li style="color:var(--run);font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 0">Chest ×2</li>
+        <li>Incline DB Press <span class="gym-sets">2×8</span></li>
+        <li>Cable Chest Fly <span class="gym-sets">1×10</span></li>
+        <li style="color:var(--run);font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 0">Back ×2</li>
+        <li>Weighted Pull-Ups <span class="gym-sets">2×6</span></li>
+        <li>Lat Pulldown <span class="gym-sets">1×10</span></li>
+        <li style="color:var(--run);font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 0">Tricep ×1</li>
+        <li>Cable Pushdown <span class="gym-sets">2×10</span></li>
+        <li style="color:var(--run);font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 0">Bicep ×1</li>
+        <li>Hammer Curl <span class="gym-sets">2×10</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-box gym" style="margin-top:16px"><b>Why tibialis raises?</b> The tibialis anterior (shin muscle) is chronically underloaded in cyclists and runners. Weak tibialis = shin splints, stress fractures, and poor foot strike mechanics. 3×20 tibialis raises twice a week is one of the highest-ROI injury prevention moves you can do. Use a tib bar, a seated resistance band, or simply the wall-seated raise — no equipment needed.<br><br><b>Gym Arc Across the Year:</b><br>
+  <b>Off-Season:</b> MAX STRENGTH — 4–5 sets, heavy (3–6 reps on compounds). Your peak gym window.<br>
+  <b>Base W1–4:</b> STRENGTH → POWER — 4 sets, heavier but explosive concentric. Faster up, controlled down.<br>
+  <b>Base W5–8:</b> POWER → MAINTENANCE — 3 sets, 65–70% 1RM. Volume drops as tri volume rises.<br>
+  <b>Base W9–13:</b> MAINTENANCE — 2 sets, 60% load. 20 min sessions. Just keeping what you built.<br>
+  <b>Build (Nov–Jan):</b> UPPER DAY ONLY — Anterior Mon + Posterior Wed. Friday upper drops with legs in Feb.<br>
+  <b>Peak (Mar+):</b> NO GYM. Tibialis raises and calf raises are ok — they're injury prevention, not fatigue.</div>
+
+  <div class="info-box"><b>Run on gym days:</b> Monday and Wednesday start with a 20–25 min easy run AM before the PM gym session. Friday starts with a 20 min easy run before upper day. Upper body and the anterior/posterior splits do not significantly fatigue your run legs — these pair cleanly. Tibialis and calf work on these days directly supports run health.</div>
+</div>
+
+<!-- OFF-SEASON -->
+<div class="panel" id="panel-offseason">
+  <div class="phase-intro">
+    <div>
+      <div class="pi-label" style="color:#4a5568">Phase 0 · Off-Season</div>
+      <div class="pi-title">Maximum<br>Strength</div>
+      <div class="pi-desc">Jul 1 – Aug 20. No pool. This is the most important gym phase of the year — when tri volume is lowest, you can push strength highest. Ant/Post upper 2×/week at max loading. Legs Friday. Runs 4×/week with structure. Bike base. Dryland swim 3×/week. Sunday = full rest.</div>
+      <ul class="pi-goals">
+        <li><span>💪</span>Mon PM: Anterior Upper (chest/front delts/triceps) + AM easy run</li>
+        <li><span>💪</span>Wed PM: Posterior Upper (back/rear delts/biceps/rotator cuff) + AM easy run</li>
+        <li><span>💪</span>Fri PM: Legs + Core · AM easy run before</li>
+        <li><span>🚴</span>5–7 hrs/wk cycling · Zone 2 base + tempo Thursdays</li>
+        <li><span>🏃</span>4 runs/wk · Easy Mon/Wed/Fri AM + dedicated Tue + long Sun</li>
+        <li><span>🏊</span>Dryland swim 3×/wk — stretch cord, hip rotation, catch drills</li>
+        <li><span>😴</span>Sunday = full rest. Non-negotiable in off-season.</li>
+      </ul>
+    </div>
+    <div class="pi-stats">
+      <div class="pi-stat"><div class="pi-stat-num" style="color:#4a5568">7</div><div class="pi-stat-lbl">Weeks</div></div>
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--gym)">3×</div><div class="pi-stat-lbl">Gym/Week</div></div>
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--run)">4×</div><div class="pi-stat-lbl">Runs/Week</div></div>
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--bike)">7–9h</div><div class="pi-stat-lbl">Total/Week</div></div>
+    </div>
+  </div>
+  <div class="info-box swim"><b>No pool until Aug 21 — Dryland Protocol (20 min, 3×/week):</b> Resistance band or stretch cord at hip height. <b>High-elbow catch pulls:</b> elbow stays high, pull straight back — 3×20 each arm. <b>Hip rotation drills:</b> rotate torso side-to-side — 3×30. <b>Single-arm reach:</b> full extension hold 2s — trains the catch position. When you hit the pool Aug 21, your mechanics will already be ahead.</div>
+  <div id="offseason-weeks"></div>
+</div>
+
+<!-- BASE -->
+<div class="panel" id="panel-base">
+  <div class="phase-intro">
+    <div>
+      <div class="pi-label" style="color:var(--swim)">Phase 1 · Base</div>
+      <div class="pi-title">Aerobic<br>Foundation</div>
+      <div class="pi-desc">Aug 21 – Nov 15. Pool unlocked. CSS swim sets from week 1 — not just drills. Tempo runs weekly. Sweet spot on bike from W3. Gym tapers: full strength W1–4 → power/maintenance W5–8 → light maintenance W9–13. 80% of all training at Zone 2.</div>
+      <ul class="pi-goals">
+        <li><span>🏊</span>Swim 3×/wk · CSS threshold sets start Week 1 (not Build)</li>
+        <li><span>🚴</span>Sweet spot intervals from W3 · Long ride 2.5→3.5 hrs</li>
+        <li><span>🏃</span>4 runs/wk · Tempo Tue · Strides added W5 · Long run 60→80 min</li>
+        <li><span>💪</span>Mon Ant + Wed Post + Fri Legs · Tapers W1-4→W5-8→W9-13</li>
+        <li><span>📈</span>9–12 hrs/wk · Recovery week every 4th week</li>
+      </ul>
+    </div>
+    <div class="pi-stats">
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--swim)">13</div><div class="pi-stat-lbl">Weeks</div></div>
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--bike)">9–12h</div><div class="pi-stat-lbl">Per Week</div></div>
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--run)">4×</div><div class="pi-stat-lbl">Runs/Week</div></div>
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--text)">80%</div><div class="pi-stat-lbl">Zone 2</div></div>
+    </div>
+  </div>
+  <div class="phase-nav" id="base-phase-nav"></div>
+  <div id="base-weeks"></div>
+</div>
+
+<!-- BUILD -->
+<div class="panel" id="panel-build">
+  <div class="phase-intro">
+    <div>
+      <div class="pi-label" style="color:var(--bike)">Phase 2 · Build</div>
+      <div class="pi-title">Race-Specific<br>Intensity</div>
+      <div class="pi-desc">Nov 16 – Feb 28. VO2 max intervals on the bike. Race-pace bricks every Saturday. Threshold swim sets. Gym = ant/post maintenance only through January — legs drop February when brick volume peaks. Run quality sessions continue weekly.</div>
+      <ul class="pi-goals">
+        <li><span>🏊</span>Swim 3–4×/wk · Race-pace sets · 2,800–3,500 yds/session</li>
+        <li><span>🚴</span>VO2 intervals + sweet spot · Long ride 3–4 hrs · Race-power bricks</li>
+        <li><span>🏃</span>Threshold run weekly · Long run grows to 1:45 · Race pace intervals</li>
+        <li><span>🧱</span>BRICK every Saturday — race power bike → half marathon pace run</li>
+        <li><span>💪</span>Mon Ant + Wed Post maintenance · Legs drop Feb · No gym Peak</li>
+        <li><span>📈</span>10–14 hrs/wk · Recovery week every 4th week</li>
+      </ul>
+    </div>
+    <div class="pi-stats">
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--bike)">15</div><div class="pi-stat-lbl">Weeks</div></div>
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--bike)">10–14h</div><div class="pi-stat-lbl">Per Week</div></div>
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--brick)">Every Sat</div><div class="pi-stat-lbl">Brick Day</div></div>
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--gym)">Maint.</div><div class="pi-stat-lbl">Gym Mode</div></div>
+    </div>
+  </div>
+  <div class="phase-nav" id="build-phase-nav"></div>
+  <div id="build-weeks"></div>
+</div>
+
+<!-- PEAK -->
+<div class="panel" id="panel-peak">
+  <div class="phase-intro">
+    <div>
+      <div class="pi-label" style="color:#ef4444">Phase 3 · Peak</div>
+      <div class="pi-title">Race<br>Simulation</div>
+      <div class="pi-desc">Mar 1 – May 15. No gym — done entirely. Two full SIM DAYS: 1.2mi swim → 56mi at race power → 13.1mi at race pace. This is the hardest block. Long runs hit 2 hrs. Bike at 78–85% FTP. Sleep 9 hrs. Fuel every session. Trust the plan.</div>
+      <ul class="pi-goals">
+        <li><span>🏊</span>Open water swims · Race-pace 1,900m sets · Wetsuit practice</li>
+        <li><span>🚴</span>3.5–4 hr rides at 78–82% FTP · VO2 intervals continue</li>
+        <li><span>🏃</span>Race-pace half marathon intervals · Long run 1:45–2 hrs</li>
+        <li><span>🧱</span>Two SIM DAYS: full race distances at race pace</li>
+        <li><span>💪</span>No gym. Core 10 min if you want. That is all.</li>
+        <li><span>📈</span>11–14 hrs/wk · Recovery W4 and W8</li>
+      </ul>
+    </div>
+    <div class="pi-stats">
+      <div class="pi-stat"><div class="pi-stat-num" style="color:#ef4444">11</div><div class="pi-stat-lbl">Weeks</div></div>
+      <div class="pi-stat"><div class="pi-stat-num" style="color:#ef4444">11–14h</div><div class="pi-stat-lbl">Per Week</div></div>
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--brick)">×2</div><div class="pi-stat-lbl">Sim Days</div></div>
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--gym)">None</div><div class="pi-stat-lbl">Gym</div></div>
+    </div>
+  </div>
+  <div class="phase-nav" id="peak-phase-nav"></div>
+  <div id="peak-weeks"></div>
+</div>
+
+<!-- TAPER -->
+<div class="panel" id="panel-taper">
+  <div class="phase-intro">
+    <div>
+      <div class="pi-label" style="color:var(--run)">Phase 4 · Taper</div>
+      <div class="pi-title">Race<br>Prep</div>
+      <div class="pi-desc">May 16 – Race Day. Three weeks. Volume drops 40% each week. Intensity stays sharp in short bursts. Fitness is locked in — you cannot get fitter in 3 weeks. Eat, sleep 9 hrs, stay calm. The legs will feel weird and heavy. That is the body absorbing months of training. Trust it.</div>
+      <ul class="pi-goals">
+        <li><span>📉</span>Week 1: 65% of peak volume · Intensity stays sharp</li>
+        <li><span>📉</span>Week 2: 45% of peak volume · Short race-pace efforts</li>
+        <li><span>📉</span>Race week: 20% · Openers only · Race on Saturday</li>
+        <li><span>😴</span>9 hrs sleep every night · Non-negotiable</li>
+        <li><span>🍝</span>Carb load 2 days out · Race morning 600 cal familiar food</li>
+      </ul>
+    </div>
+    <div class="pi-stats">
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--run)">3</div><div class="pi-stat-lbl">Weeks</div></div>
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--run)">−40%</div><div class="pi-stat-lbl">Vol/Week</div></div>
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--text)">Sharp</div><div class="pi-stat-lbl">Intensity</div></div>
+      <div class="pi-stat"><div class="pi-stat-num" style="color:var(--text)">9hrs</div><div class="pi-stat-lbl">Sleep/Night</div></div>
+    </div>
+  </div>
+  <div id="taper-weeks"></div>
+</div>
+
+<!-- RACE DAY -->
+<div class="panel" id="panel-raceday">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:3px;color:var(--bike);text-transform:uppercase;margin-bottom:8px">Race Execution</div>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:1px;margin-bottom:18px">Race Day — 70.3 Strategy</h2>
+  <div class="info-box"><b>The 70.3 is a race, not a survival mission.</b> You trained at race pace in practice. Now execute it. The bike is where the race is won or lost — go too hard and the run falls apart. Go correctly and you run the best half marathon of your life off the bike.</div>
+  <div id="raceday-content"></div>
+</div>
+
+<!-- NUTRITION -->
+<div class="panel" id="panel-nutrition">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:3px;color:var(--bike);text-transform:uppercase;margin-bottom:8px">Fueling</div>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:1px;margin-bottom:18px">Nutrition — Built for Training and Racing</h2>
+  <div class="info-box"><b>The gut is a muscle.</b> It needs training just like your legs. Start fueling correctly from Week 1 of Off-Season. Athletes who don't practice race nutrition in training discover gut problems on race day with no time to fix them.</div>
+  <div id="nutrition-content"></div>
+</div>
+
+<script>
+// ══════ NAVIGATION ══════
+function switchTop(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.topnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+function toggleWeek(el){
+  const body=el.nextElementSibling;
+  const chev=el.querySelector('.week-chevron');
+  body.classList.toggle('open');
+  chev.textContent=body.classList.contains('open')?'▲':'▼';
+}
+
+// ══════ BUILDERS ══════
+function sess(type,title,desc,tags=[]){
+  const tagHtml=tags.map(t=>`<span class="stag ${t.cls}">${t.label}</span>`).join('');
+  return `<div class="session s-${type}"><div class="session-title">${title}</div><div class="session-desc">${desc}</div>${tags.length?`<div class="session-tags">${tagHtml}</div>`:''}</div>`;
+}
+function tag(cls,label){return{cls,label}}
+function rest(note='Full rest. Sleep 8–9 hrs. Eat well. Adaptation happens here, not in training.'){
+  return sess('rest','😴 Rest Day',note,[tag('t-rest','Recovery')]);
+}
+function day(name,time,sessions){
+  return `<div class="day-card"><div class="day-label"><div class="day-name">${name}</div><div class="day-time">${time}</div></div><div class="day-sessions">${sessions.join('')}</div></div>`;
+}
+function buildWeek(num,title,subtitle,hrs,days,isOpen=false){
+  const isRec=title.toLowerCase().includes('recovery');
+  const isSim=title.toLowerCase().includes('sim');
+  const badge=isRec?'<span class="rec-badge">Recovery Week</span>':isSim?'<span class="sim-badge">Sim Day</span>':'';
+  return `<div class="week-acc"><div class="week-header" onclick="toggleWeek(this)"><div class="week-header-left"><div class="week-num">W${num}</div><div><div class="week-title-text">${title}${badge}</div><div class="week-subtitle">${subtitle}</div></div></div><div class="week-meta"><span class="week-hrs">${hrs}</span><span class="week-chevron">${isOpen?'▲':'▼'}</span></div></div><div class="week-body ${isOpen?'open':''}">${days.join('')}</div></div>`;
+}
+
+// ══════ GYM SESSIONS ══════
+// Tiered by phase — full/power/maintenance/recovery
+function gymAnt(tier){
+  const details={
+    full:'CHEST: Bench press 2×6, incline DB press 1×10. QUAD: Back squat 2×8. ABS: Dead bug or ab wheel 2×10. SHOULDER: Overhead press 2×8. BICEP: Barbell curl 2×10. FOREARM: Wrist roller or reverse curl 2×10. Strength focus — heavy weight, controlled reps. Rest 2 min on compounds.',
+    power:'CHEST: Bench press 2×6 heavier + explosive concentric. QUAD: Squat 2×6. ABS: Ab wheel 2×10. SHOULDER: Overhead press 2×6. BICEP: Curl 2×8. FOREARM: Reverse curl 2×10. Faster up, controlled down.',
+    maint:'CHEST: Bench press 1×8, incline DB 1×10. QUAD: Goblet squat 1×10. ABS: Dead bug 1×10. SHOULDER: OH press 1×10. BICEP: Curl 1×10. FOREARM: Reverse curl 1×10. 20 min total.',
+    recov:'Bench press 1×10 at 60%, squat 1×10 light, curl 1×10. 12 min max.'
+  };
+  const setStr={full:'Full Strength',power:'Power Phase',maint:'Maintenance',recov:'Recovery Sets'};
+  return sess('gym',`💪 Anterior Day – ${setStr[tier]} (PM after work)`,details[tier],[tag('t-gym','Gym'),tag('t-gym','Anterior')]);
+}
+function gymPost(tier){
+  const details={
+    full:'BACK: Barbell row 2×6, chest-supported DB row 1×10. GLUTES/HAMS: Bulgarian split squat or hip thrust 2×8 each. TRICEP: Close-grip bench or skull crusher 2×8. CALVES: Weighted calf raise 2×10. SHOULDER: Face pulls or rear delt fly 2×10. Strength focus — heavy and controlled. Rest 2 min on compounds.',
+    power:'BACK: Barbell row 2×6 heavy explosive. GLUTES/HAMS: Bulgarian split squat 2×6 each. TRICEP: Close-grip bench 2×6. CALVES: Calf raise 2×10. SHOULDER: Rear delt fly 2×10. Concentric fast on everything.',
+    maint:'BACK: Row 1×8, chest-supported row 1×10. GLUTES/HAMS: Hip thrust 1×10. TRICEP: Skull crusher 1×10. CALVES: Calf raise 1×12. SHOULDER: Face pulls 1×10. 20 min total.',
+    recov:'Row 1×10 at 60%, hip thrust 1×10, calf raise 1×10. 12 min max.'
+  };
+  const setStr={full:'Full Strength',power:'Power Phase',maint:'Maintenance',recov:'Recovery Sets'};
+  return sess('gym',`💪 Posterior Day – ${setStr[tier]} (PM after work)`,details[tier],[tag('t-gym','Gym'),tag('t-gym','Posterior')]);
+}
+function gymLegs(tier){
+  const details={
+    full:'SHOULDERS: Overhead press 2×6, lateral raises 2×10. CHEST: Incline DB press 2×8, cable chest fly 1×10. BACK: Weighted pull-ups 2×6, lat pulldown 1×10. TRICEP: Cable pushdown 2×10. BICEP: Hammer curl 2×10. Strength focus — controlled reps, 2 min rest on compounds.',
+    power:'SHOULDERS: OH press 2×6 heavy, lateral raises 2×10. CHEST: Incline DB 2×6. BACK: Pull-ups 2×6 weighted. TRICEP: Pushdown 2×8. BICEP: Hammer curl 2×8. Explosive concentric on all compounds.',
+    maint:'SHOULDERS: OH press 1×8, lateral raises 1×12. CHEST: Incline DB 1×10. BACK: Pull-ups 1×max, lat pulldown 1×10. TRICEP: Pushdown 1×10. BICEP: Hammer curl 1×10. 20 min total.',
+    recov:'OH press 1×10, pull-ups 1×max, pushdown 1×10, hammer curl 1×10. 12 min max.',
+    none:null
+  };
+  const setStr={full:'Full Strength',power:'Power Phase',maint:'Maintenance',recov:'Recovery Sets'};
+  if(tier==='none') return sess('rest','🛌 No Upper Day — Fri Rest','Brick volume is high. Optional: tibialis raise 2×20 + calf raise 2×12 for injury prevention only.',[tag('t-rest','Rest')]);
+  return sess('gym',`💪 Upper Day – ${setStr[tier]} (PM after work)`,details[tier],[tag('t-gym','Gym'),tag('t-gym','Upper')]);
+}
+
+// Easy run before gym sessions
+function gymRun(min,zone='Zone 1'){
+  return sess('run',`🏃 AM: Easy Run – ${min} min`,`${zone}. Run before gym — upper body sessions don't fatigue run legs. Free run frequency stacked smartly.`,[tag('t-run','Run'),tag('t-z1','Easy')]);
+}
+
+// ══════ OVERVIEW TIMELINE ══════
+const tlData=[
+  {m:'Jul',p:'off',ph:'offseason',label:'Off-Season',hrs:'7–9h'},
+  {m:'Aug',p:'off',ph:'offseason',label:'Pre-Base',hrs:'8–10h'},
+  {m:'Sep',p:'base',ph:'base',label:'Base',hrs:'9–11h'},
+  {m:'Oct',p:'base',ph:'base',label:'Base',hrs:'10–12h'},
+  {m:'Nov',p:'base',ph:'base',label:'Base→Build',hrs:'10–12h'},
+  {m:'Dec',p:'build',ph:'build',label:'Build',hrs:'10–13h'},
+  {m:'Jan',p:'build',ph:'build',label:'Build',hrs:'11–14h'},
+  {m:'Feb',p:'build',ph:'build',label:'Build',hrs:'11–14h'},
+  {m:'Mar',p:'peak',ph:'peak',label:'Peak',hrs:'11–14h'},
+  {m:'Apr',p:'peak',ph:'peak',label:'Peak',hrs:'12–14h'},
+  {m:'May',p:'peak',ph:'peak',label:'Peak→Taper',hrs:'↓ Vol'},
+  {m:'Jun',p:'taper',ph:'taper',label:'Race Day',hrs:'🏅'},
+];
+const tlEl=document.getElementById('ov-timeline');
+tlData.forEach(m=>{
+  tlEl.innerHTML+=`<div class="ov-month ${m.p}" onclick="switchTop('${m.ph}',document.querySelectorAll('.topnav-btn')[${['offseason','base','build','peak','taper'].indexOf(m.ph)+2}])"><div class="ov-month-name">${m.m}</div><div class="ov-month-phase">${m.label}</div><div class="ov-month-hrs">${m.hrs}</div></div>`;
+});
+
+// ══════ OFF-SEASON (7 weeks) ══════
+// Structure every week:
+// MON: 20–30 min easy run AM + Anterior Upper PM
+// TUE: dedicated run session (tempo or easy) AM
+// WED: 20–30 min easy run AM + Posterior Upper PM
+// THU: Bike with tempo AM (5–6:30am)
+// FRI: 20 min easy run AM + Legs/Core PM
+// SAT: Long ride AM + dryland swim after
+// SUN: FULL REST
+function osWeek(num,title,sub,hrs,bikeThu,bikeSat,tuRun,gymTier,open=false){
+  return buildWeek(num,title,sub,hrs,[
+    day('MON','5–6am run · PM gym',[
+      gymRun(20,'Zone 1'),
+      gymAnt(gymTier)
+    ]),
+    day('TUE','5–6:30am',[
+      sess('run',`🏃 Run – ${tuRun}`,'Dedicated run session. Zone 2 pace. Build aerobic run base — this is the only session purely dedicated to running this day.',[tag('t-run','Run'),tag('t-z2','Zone 2')])
+    ]),
+    day('WED','5–6am run · PM gym',[
+      gymRun(25,'Zone 1–2'),
+      gymPost(gymTier)
+    ]),
+    day('THU','5–6:30am',[
+      sess('bike',`🚴 ${bikeThu}`,'Warmup 10 min → tempo blocks → cooldown 10 min. Tempo on the bike = 76–85% FTP, breathing hard but controlled.',[tag('t-bike','Bike'),tag('t-z3','Tempo')])
+    ]),
+    day('FRI','5–6am run · PM gym',[
+      gymRun(20,'Zone 1'),
+      gymLegs(gymTier)
+    ]),
+    day('SAT','Morning – long session',[
+      sess('bike',`🚴 Long Ride – ${bikeSat}`,'Zone 2 the whole way. Practice nutrition from mile 15 onward. Every long ride is a nutrition rehearsal.',[tag('t-bike','Long Ride'),tag('t-z2','Zone 2')]),
+      sess('dryland','🏊 Dryland Swim – 20 min (after ride)','Stretch cord pulls 3×20 each arm, hip rotation 3×30, high-elbow catch hold 3×15. Do while still warm from the ride.',[tag('t-swim','Dryland')])
+    ]),
+    day('SUN','🛌 FULL REST',[
+      rest('Full rest. Every Sunday in Off-Season. No training. Sleep 9 hrs. Eat well. Walk if you want but nothing structured. Adaptation happens here.')
+    ])
+  ],open);
+}
+const osData=[];
+osData.push(osWeek(1,'Week 1 — Start Here','Build the habit. Easy across the board.','~8 hrs','80 min · 2×12 min tempo','2.5 hrs','45 min easy','full',true));
+osData.push(osWeek(2,'Week 2','Run and ride edges up.','~8.5 hrs','85 min · 2×15 min tempo','3 hrs','50 min easy','full'));
+osData.push(osWeek(3,'Week 3','Gym still full strength. Bike longest yet.','~9 hrs','90 min · 3×12 min tempo','3.5 hrs','55 min easy','full'));
+osData.push(buildWeek(4,'Week 4 — Recovery','Pull back. Gym recovery sets only.','~6 hrs',[
+  day('MON','5–6am / PM',[gymRun(15),gymAnt('recov')]),
+  day('TUE','5–6am',[sess('run','🏃 Easy Run – 35 min','Zone 2.',[tag('t-run','Run'),tag('t-z2','Zone 2')])]),
+  day('WED','PM',[gymPost('recov')]),
+  day('THU','5–6am',[sess('bike','🚴 Bike – 60 min Zone 2','Easy.',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('FRI','5–6am / PM',[gymRun(15),gymLegs('recov')]),
+  day('SAT','Morning',[sess('bike','🚴 Long Ride – 2 hrs Zone 2','Short this week.',[tag('t-bike','Long Ride'),tag('t-z2','Zone 2')])]),
+  day('SUN','🛌 FULL REST',[rest('Recovery week AND rest day. Sleep extra.')])
+]));
+osData.push(osWeek(5,'Week 5','Power phase begins in gym. Concentric faster.','~9 hrs','90 min · 3×15 min tempo','3.5 hrs','55 min easy','power'));
+osData.push(osWeek(6,'Week 6','Long ride hits 4 hrs. Peak off-season week.','~10 hrs','95 min · 2×20 min tempo','4 hrs','60 min easy','power'));
+osData.push(buildWeek(7,'Week 7 — Bridge to Base','Wind down. Pool opens Aug 21.','~8 hrs',[
+  day('MON','5–6am / PM',[gymRun(20),gymAnt('power')]),
+  day('TUE','5–6:30am',[sess('run','🏃 Run – 50 min easy','Zone 2.',[tag('t-run','Run'),tag('t-z2','Zone 2')])]),
+  day('WED','5–6am / PM',[gymRun(25),gymPost('power')]),
+  day('THU','5–6:30am',[sess('bike','🚴 Bike – 80 min · 2×15 min tempo','Last tempo ride before base phase.',[tag('t-bike','Bike'),tag('t-z3','Tempo')])]),
+  day('FRI','5–6am / PM',[gymRun(20),gymLegs('power')]),
+  day('SAT','Morning',[
+    sess('bike','🚴 Long Ride – 3 hrs Zone 2','Last ride before Base Phase begins.',[tag('t-bike','Long Ride'),tag('t-z2','Zone 2')]),
+    sess('dryland','🏊 Dryland Swim – 20 min','Last dryland. Pool opens Thursday Aug 21.',[tag('t-swim','Dryland')])
+  ]),
+  day('SUN','🛌 FULL REST',[rest('Last full rest Sunday. Base Phase begins Monday. Pool available Thursday.')])
+]));
+document.getElementById('offseason-weeks').innerHTML=osData.join('');
+
+// ══════ BASE PHASE (13 weeks) ══════
+// NEW STRUCTURE:
+// MON: easy run AM + Anterior PM
+// TUE: Bike intervals AM (sweet spot from W3, Zone 2 before)
+// WED: Zone 2 bike AM + Posterior PM
+// THU: Run AM + Swim AM (CSS) + Swim PM (endurance) — both swims here
+// FRI: easy run AM + Upper PM
+// SAT: Long ride
+// SUN: Long run
+function baseWeek(num,title,sub,hrs,bikeTue,bikeWed,swThuAM,swThuPM,runThu,bikeSat,runSun,gymTier,open=false){
+  return buildWeek(num,title,sub,hrs,[
+    day('MON','5–6am run · PM gym',[
+      gymRun(20,'Zone 1'),
+      gymAnt(gymTier)
+    ]),
+    day('TUE','5–6:30am',[
+      sess('bike',`🚴 Bike – ${bikeTue}`,'15 min warmup Zone 1 → main set → 15 min cooldown. 3 bike sessions per week is the minimum for 70.3 success — this is your intensity bike day.',[tag('t-bike','Bike'),tag('t-ss','Sweet Spot')])
+    ]),
+    day('WED','5–6:30am · PM gym',[
+      sess('bike',`🚴 AM: Zone 2 Bike – ${bikeWed}`,'Steady Zone 2. Fuel every 20 min. Second bike session of the week builds aerobic base on the bike specifically.',[tag('t-bike','Bike'),tag('t-z2','Zone 2')]),
+      gymPost(gymTier)
+    ]),
+    day('THU','5–6:30am AM · PM',[
+      sess('run',`🏃 AM: ${runThu}`,'10 min warmup → quality work (tempo or strides) → 10 min cooldown. Tempo = comfortably hard, 3–4 words max.',[tag('t-run','Run'),tag('t-z3','Quality')]),
+      sess('swim',`🏊 AM: CSS Swim – ${swThuAM}`,'400 yd drill warm-up every session (catch-up drill, fingertip drag, bilateral breathing). Then CSS main set. Run first, then swim — both are AM but swim follows the run.',[tag('t-swim','Swim'),tag('t-css','CSS')]),
+      sess('swim',`🏊 PM: Endurance Swim – ${swThuPM}`,'200–400 yd repeats, 20s rest. Hold technique as you fatigue. Double swim Thursday builds yardage without adding a 4th training day.',[tag('t-swim','Swim'),tag('t-z2','Endurance')])
+    ]),
+    day('FRI','5–6am run · PM gym',[
+      gymRun(20,'Zone 1'),
+      gymLegs(gymTier)
+    ]),
+    day('SAT','Morning – long session',[
+      sess('bike',`🚴 Long Ride – ${bikeSat}`,'Zone 2 the whole way. Third bike session of the week. Nutrition: 60–70g carbs/hr from mile 15 onward, every 20 min.',[tag('t-bike','Long Ride'),tag('t-z2','Zone 2')])
+    ]),
+    day('SUN','Morning – active recovery',[
+      sess('run',`🏃 Long Run – ${runSun}`,'Zone 2 only. Gel every 20–25 min over 60 min. Electrolytes every 30 min. Build time on feet.',[tag('t-run','Long Run'),tag('t-z2','Zone 2')])
+    ])
+  ],open);
+}
+const bsData=[];
+// W1–4: full/power gym. Tue = Zone 2 bike (SS from W3). Thu = run + double swim.
+bsData.push(baseWeek(1,'Week 1 — Pool Unlocked','3 bike sessions/wk from day 1. CSS swim starts.','~11 hrs',
+  '75 min Zone 2 (no intervals yet — build feel first)','85 min Zone 2',
+  '50 min · Drills 400 + 10×100 CSS 15s rest + 200 cool','45 min · 1,800 yds endurance 200s',
+  '55 min · 3×8 min tempo','2.5 hrs','65 min','full',true));
+bsData.push(baseWeek(2,'Week 2','CSS grows. Strides added.','~11.5 hrs',
+  '80 min Zone 2','90 min Zone 2',
+  '55 min · Drills 400 + 12×100 CSS + 200 cool','45 min · 2,000 yds 200s',
+  '60 min · 3×10 min tempo + 4 strides','2.5 hrs','70 min','full',false));
+bsData.push(baseWeek(3,'Week 3','Sweet spot on Tue bike begins.','~12 hrs',
+  '90 min · 2×15 min @ 88–92% FTP','90 min Zone 2',
+  '55 min · Drills 400 + 12×100 CSS + cool','50 min · 2,100 yds 300s',
+  '60 min · 2×15 min tempo + 4 strides','3 hrs','70 min','full',false));
+bsData.push(buildWeek(4,'Week 4 — Recovery','Pull back 35%. 3 bikes still, shorter.','~8 hrs',[
+  day('MON','5–6am / PM',[gymRun(15),gymAnt('recov')]),
+  day('TUE','5–6am',[sess('bike','🚴 Bike – 60 min Zone 2','Easy recovery bike.',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('WED','5–6:30am / PM',[
+    sess('bike','🚴 Bike – 60 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')]),
+    gymPost('recov')
+  ]),
+  day('THU','AM · PM',[
+    sess('run','🏃 Easy Run – 40 min','Zone 2.',[tag('t-run','Run'),tag('t-z2','Zone 2')]),
+    sess('swim','🏊 AM: Swim – 35 min · 8×100 CSS easy','Lower volume.',[tag('t-swim','Swim'),tag('t-css','CSS')]),
+    sess('swim','🏊 PM: Swim – 30 min easy','Easy endurance.',[tag('t-swim','Swim'),tag('t-z1','Easy')])
+  ]),
+  day('FRI','5–6am / PM',[gymRun(15),gymLegs('recov')]),
+  day('SAT','Morning',[sess('bike','🚴 Long Ride – 2 hrs Zone 2','Short this week.',[tag('t-bike','Long Ride'),tag('t-z2','Zone 2')])]),
+  day('SUN','Morning',[sess('run','🏃 Run – 50 min easy','Zone 2.',[tag('t-run','Run'),tag('t-z2','Zone 2')])])
+]));
+// W5–8: maintenance gym
+bsData.push(baseWeek(5,'Week 5','Gym → maintenance. SS intervals grow.','~12 hrs',
+  '90 min · 2×18 min @ 88–92% FTP','95 min Zone 2',
+  '60 min · Drills 400 + 14×100 CSS + cool','50 min · 2,200 yds 300–400s',
+  '65 min · 2×18 min tempo + 6 strides','3 hrs','70 min','maint',false));
+bsData.push(baseWeek(6,'Week 6','Long ride grows to 3.5 hrs.','~12.5 hrs',
+  '95 min · 3×12 min @ 90–94% FTP','100 min Zone 2',
+  '60 min · Drills 400 + 14×100 CSS + cool','50 min · 2,300 yds 400s',
+  '65 min · 2×20 min tempo + 6 strides','3.5 hrs','75 min','maint',false));
+bsData.push(baseWeek(7,'Week 7','Long run hits 80 min.','~13 hrs',
+  '95 min · 2×22 min @ 88–92% FTP','100 min Zone 2',
+  '65 min · Drills 400 + 16×100 CSS + cool','55 min · 2,400 yds 400s',
+  '70 min · 3×15 min tempo + 6 strides','3.5 hrs','80 min','maint',false));
+bsData.push(buildWeek(8,'Week 8 — Recovery','Mid-base rest. 3 bikes still, shorter.','~8.5 hrs',[
+  day('MON','5–6am / PM',[gymRun(20),gymAnt('recov')]),
+  day('TUE','5–6am',[sess('bike','🚴 Bike – 65 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('WED','5–6:30am / PM',[
+    sess('bike','🚴 Bike – 65 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')]),
+    gymPost('recov')
+  ]),
+  day('THU','AM · PM',[
+    sess('run','🏃 Easy Run – 45 min','Zone 2.',[tag('t-run','Run'),tag('t-z2','Zone 2')]),
+    sess('swim','🏊 AM: Swim – 40 min · 10×100 CSS easy','',[tag('t-swim','Swim'),tag('t-css','CSS')]),
+    sess('swim','🏊 PM: Swim – 30 min easy','',[tag('t-swim','Swim'),tag('t-z1','Easy')])
+  ]),
+  day('FRI','5–6am / PM',[gymRun(20),gymLegs('recov')]),
+  day('SAT','Morning',[sess('bike','🚴 Long Ride – 2.5 hrs Zone 2','',[tag('t-bike','Long Ride'),tag('t-z2','Zone 2')])]),
+  day('SUN','Morning',[sess('run','🏃 Run – 60 min easy','',[tag('t-run','Run'),tag('t-z2','Zone 2')])])
+]));
+// W9–13: light maintenance gym
+bsData.push(baseWeek(9,'Week 9','Gym → light maintenance.','~12.5 hrs',
+  '100 min · 2×25 min @ 88–92% FTP','105 min Zone 2',
+  '65 min · Drills 400 + 16×100 CSS + cool','55 min · 2,500 yds 400–500s',
+  '70 min · 3×18 min tempo + 6 strides','3.5 hrs','80 min','maint',false));
+bsData.push(baseWeek(10,'Week 10','Swim yardage climbing.','~13 hrs',
+  '100 min · 1×35 min @ 88% FTP','105 min Zone 2',
+  '65 min · 18×100 CSS + cool','55 min · 2,600 yds 500s',
+  '75 min · 3×18 min tempo + 8 strides','3.5 hrs','80 min','maint',false));
+bsData.push(baseWeek(11,'Week 11','Last big base week. 3 strong bike sessions.','~13.5 hrs',
+  '105 min · 2×25 min @ 90–94% FTP','110 min Zone 2',
+  '70 min · 18×100 CSS + cool','60 min · 2,700 yds 500s',
+  '75 min · 2×22 min tempo + 8 strides','3.5 hrs','80 min','maint',false));
+bsData.push(buildWeek(12,'Week 12 — Recovery','Third rest week.','~9 hrs',[
+  day('MON','5–6am / PM',[gymRun(20),gymAnt('recov')]),
+  day('TUE','5–6am',[sess('bike','🚴 Bike – 65 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('WED','5–6:30am / PM',[
+    sess('bike','🚴 Bike – 65 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')]),
+    gymPost('recov')
+  ]),
+  day('THU','AM · PM',[
+    sess('run','🏃 Easy Run – 45 min','Zone 2.',[tag('t-run','Run'),tag('t-z2','Zone 2')]),
+    sess('swim','🏊 AM: Swim – 40 min · 10×100 CSS easy','',[tag('t-swim','Swim'),tag('t-css','CSS')]),
+    sess('swim','🏊 PM: Swim – 30 min easy','',[tag('t-swim','Swim'),tag('t-z1','Easy')])
+  ]),
+  day('FRI','5–6am / PM',[gymRun(20),gymLegs('recov')]),
+  day('SAT','Morning',[sess('bike','🚴 Long Ride – 2.5 hrs Zone 2','',[tag('t-bike','Long Ride'),tag('t-z2','Zone 2')])]),
+  day('SUN','Morning',[sess('run','🏃 Run – 60 min easy','',[tag('t-run','Run'),tag('t-z2','Zone 2')])])
+]));
+bsData.push(baseWeek(13,'Week 13 — Bridge to Build','Last base week. 3 bike sessions strong.','~11.5 hrs',
+  '95 min · 2×20 min @ 90% FTP','95 min Zone 2',
+  '65 min · 16×100 CSS + cool','55 min · 2,500 yds 400s',
+  '70 min · 2×20 min tempo + 6 strides','3 hrs','75 min','maint',false));
+document.getElementById('base-weeks').innerHTML=bsData.join('');
+
+// ══════ BUILD PHASE (15 weeks) ══════
+// MON: easy run AM + Anterior PM (gym)
+// TUE: Bike intervals AM (VO2 / sweet spot) ← was swim, now BIKE
+// WED: Zone 2 bike AM + Posterior PM (gym)
+// THU: Run AM + CSS swim AM + Endurance swim PM (double swim here)
+// FRI: easy run AM + Upper PM (gym, drops later)
+// SAT: BRICK
+// SUN: Long run
+function buildWeekStd(num,title,sub,hrs,bikeTue,bikeWed,swThuAM,swThuPM,runThu,brickBike,brickRun,runSun,gymMode,open=false){
+  const monSess=[gymRun(25,'Zone 1')];
+  if(gymMode!=='none') monSess.push(gymAnt('maint'));
+  const wedSess=[sess('bike',`🚴 AM: Zone 2 Bike – ${bikeWed}`,'Zone 2 steady. Second bike session of the week. Fuel every 20 min.',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])];
+  if(gymMode==='full'||gymMode==='upper') wedSess.push(gymPost('maint'));
+  const friSess=[gymRun(20,'Zone 1')];
+  if(gymMode==='full') friSess.push(gymLegs('maint'));
+  else friSess.push(rest('Rest before brick Saturday.'));
+  return buildWeek(num,title,sub,hrs,[
+    day('MON','5–6am run · PM gym',monSess),
+    day('TUE','5–6:30am',[
+      sess('bike',`🚴 Bike Intervals – ${bikeTue}`,'15 min warmup → intervals → 15 min cooldown. This is your sharpest bike session of the week — 3 bike sessions per week is the foundation of 70.3 success.',[tag('t-bike','Bike'),tag('t-ss','Intervals')])
+    ]),
+    day('WED','5–6:30am · PM',wedSess),
+    day('THU','AM · PM',[
+      sess('run',`🏃 AM: ${runThu}`,'10 min warmup → threshold reps → 10 min cooldown.',[tag('t-run','Run'),tag('t-z3','Threshold')]),
+      sess('swim',`🏊 AM: CSS Swim – ${swThuAM}`,'Drill warmup 400 yds → CSS main set → 200 cool. Run then swim, both AM.',[tag('t-swim','Swim'),tag('t-css','CSS')]),
+      sess('swim',`🏊 PM: Endurance Swim – ${swThuPM}`,'400–600 yd repeats. Hold pace under fatigue. Double swim Thursday keeps yardage high.',[tag('t-swim','Swim'),tag('t-z2','Endurance')])
+    ]),
+    day('FRI','5–6am · PM',friSess),
+    day('SAT','Morning – race simulation',[
+      sess('brick',`🧱 BRICK: ${brickBike} → Immediate ${brickRun} run`,'Rack bike, helmet off, shoes on, go. First mile slower than feels right.',[tag('t-bike','Bike'),tag('t-run','Run'),tag('t-brick','Brick')])
+    ]),
+    day('SUN','Morning',[
+      sess('run',`🏃 Long Run – ${runSun}`,'Zone 2. Gel every 20 min over 60 min.',[tag('t-run','Long Run'),tag('t-z2','Zone 2')])
+    ])
+  ],open);
+}
+const bdData=[];
+bdData.push(buildWeekStd(1,'Week 1 — Build Begins','3 bike sessions. VO2 starts. Full gym.','~12 hrs',
+  '90 min · 5×4 min @ 110–115% FTP','90 min Zone 2',
+  '60 min · 14×100 CSS + 4×200 race pace','55 min · 2,500 yds 400s',
+  '75 min · 3×12 min threshold',
+  '3 hr ride @ 75–80% FTP','25 min @ HM pace','85 min','full',true));
+bdData.push(buildWeekStd(2,'Week 2','VO2 harder. Brick run grows.','~12.5 hrs',
+  '90 min · 6×3 min @ 115–120% FTP','95 min Zone 2',
+  '60 min · 16×100 CSS + 4×200 race pace','55 min · 2,600 yds 400s',
+  '75 min · 3×15 min threshold',
+  '3.5 hr ride @ 78–82% FTP','30 min @ HM pace','85 min','full'));
+bdData.push(buildWeekStd(3,'Week 3','Longest brick yet. 3 strong bike days.','~13 hrs',
+  '95 min · 4×5 min @ 108–112% FTP','100 min Zone 2',
+  '65 min · 16×100 CSS + 4×200 race pace','55 min · 2,700 yds 500s',
+  '80 min · 3×18 min threshold',
+  '3.5 hr ride @ 78–82% FTP','35 min @ HM pace','90 min','full'));
+bdData.push(buildWeek(4,'Week 4 — Recovery','3 bikes still, shorter.','~8.5 hrs',[
+  day('MON','5–6am / PM',[gymRun(20),gymAnt('recov')]),
+  day('TUE','5–6am',[sess('bike','🚴 Bike – 65 min Zone 2','Recovery bike.',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('WED','5–6:30am / PM',[
+    sess('bike','🚴 Bike – 65 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')]),
+    gymPost('recov')
+  ]),
+  day('THU','AM · PM',[
+    sess('run','🏃 Easy Run – 50 min','Zone 2.',[tag('t-run','Run'),tag('t-z2','Zone 2')]),
+    sess('swim','🏊 AM: Swim – 40 min · 10×100 CSS easy','',[tag('t-swim','Swim'),tag('t-css','CSS')]),
+    sess('swim','🏊 PM: Swim – 30 min easy','',[tag('t-swim','Swim'),tag('t-z1','Easy')])
+  ]),
+  day('FRI','Rest',[rest('Full rest before recovery brick.')]),
+  day('SAT','Morning',[sess('brick','🧱 Brick: 2.5 hr ride → 20 min easy run','Easy effort.',[tag('t-bike','Bike'),tag('t-run','Run'),tag('t-brick','Brick')])]),
+  day('SUN','Morning',[sess('run','🏃 Run – 70 min easy','',[tag('t-run','Run'),tag('t-z2','Zone 2')])])
+]));
+bdData.push(buildWeekStd(5,'Week 5','Long run 90 min. Legs gym drops.','~13 hrs',
+  '95 min · 5×4 min @ 110% FTP','100 min Zone 2',
+  '65 min · 16×100 CSS + 4×200 race pace','60 min · 2,800 yds 500s',
+  '80 min · 2×22 min threshold',
+  '3.5 hr ride @ 78–82% FTP','35 min @ HM pace','90 min','upper'));
+bdData.push(buildWeekStd(6,'Week 6','Brick ride 4 hrs.','~13.5 hrs',
+  '100 min · 3×8 min @ 112% FTP','100 min Zone 2',
+  '65 min · 18×100 CSS + 4×200 race pace','60 min · 2,900 yds 500s',
+  '80 min · 3×20 min threshold',
+  '4 hr ride @ 78–82% FTP','40 min @ HM pace','90 min','upper'));
+bdData.push(buildWeekStd(7,'Week 7','Biggest build week. Brick run 45 min.','~14 hrs',
+  '100 min · 2×12 min @ 92–95% FTP','105 min Zone 2',
+  '70 min · 18×100 CSS + 6×200 race pace','60 min · 3,000 yds 500s',
+  '85 min · 3×20 min threshold',
+  '4 hr ride @ 80–82% FTP','45 min @ HM pace','90 min','upper'));
+bdData.push(buildWeek(8,'Week 8 — Recovery','3 bikes still, shorter.','~9 hrs',[
+  day('MON','5–6am / PM',[gymRun(20),gymAnt('recov')]),
+  day('TUE','5–6am',[sess('bike','🚴 Bike – 70 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('WED','5–6:30am / PM',[
+    sess('bike','🚴 Bike – 70 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')]),
+    gymPost('recov')
+  ]),
+  day('THU','AM · PM',[
+    sess('run','🏃 Easy Run – 55 min','Zone 2.',[tag('t-run','Run'),tag('t-z2','Zone 2')]),
+    sess('swim','🏊 AM: Swim – 45 min · 12×100 CSS easy','',[tag('t-swim','Swim'),tag('t-css','CSS')]),
+    sess('swim','🏊 PM: Swim – 30 min easy','',[tag('t-swim','Swim'),tag('t-z1','Easy')])
+  ]),
+  day('FRI','Rest',[rest()]),
+  day('SAT','Morning',[sess('brick','🧱 Brick: 3 hr ride → 25 min easy run','',[tag('t-bike','Bike'),tag('t-run','Run'),tag('t-brick','Brick')])]),
+  day('SUN','Morning',[sess('run','🏃 Run – 75 min easy','',[tag('t-run','Run'),tag('t-z2','Zone 2')])])
+]));
+bdData.push(buildWeekStd(9,'Week 9 — Feb: No Gym','All energy to tri. 3 bike sessions.','~14 hrs',
+  '105 min · 4×6 min @ 108% FTP','105 min Zone 2',
+  '70 min · 20×100 CSS + 6×200 race pace','65 min · 3,100 yds 600s',
+  '85 min · 3×22 min threshold',
+  '4 hr ride @ 80–83% FTP','50 min @ HM pace','90 min','none'));
+bdData.push(buildWeekStd(10,'Week 10','Long run 1:45. 3 bike sessions.','~14 hrs',
+  '105 min · 5×4 min @ 110% FTP','105 min Zone 2',
+  '70 min · 20×100 CSS + 6×200','65 min · 3,200 yds 600s',
+  '85 min · 2×25 min threshold',
+  '4 hr ride @ 80–83% FTP','50 min @ HM pace','1:45','none'));
+bdData.push(buildWeekStd(11,'Week 11','Brick run 55 min.','~14.5 hrs',
+  '110 min · 3×10 min @ 92–95% FTP','110 min Zone 2',
+  '75 min · 22×100 CSS + 6×200','65 min · 3,200 yds 600s',
+  '85 min · 3×22 min threshold',
+  '4 hr ride @ 80–85% FTP','55 min @ HM pace','1:45','none'));
+bdData.push(buildWeek(12,'Week 12 — Recovery','3 bikes, shorter.','~9.5 hrs',[
+  day('MON','5–6am',[gymRun(20)]),
+  day('TUE','5–6am',[sess('bike','🚴 Bike – 70 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('WED','5–6:30am',[sess('bike','🚴 Bike – 70 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('THU','AM · PM',[
+    sess('run','🏃 Easy Run – 55 min','Zone 2.',[tag('t-run','Run'),tag('t-z2','Zone 2')]),
+    sess('swim','🏊 AM: Swim – 45 min · 12×100 CSS easy','',[tag('t-swim','Swim'),tag('t-css','CSS')]),
+    sess('swim','🏊 PM: Swim – 30 min easy','',[tag('t-swim','Swim'),tag('t-z1','Easy')])
+  ]),
+  day('FRI','Rest',[rest()]),
+  day('SAT','Morning',[sess('brick','🧱 Brick: 3 hr ride → 30 min easy run','',[tag('t-bike','Bike'),tag('t-run','Run'),tag('t-brick','Brick')])]),
+  day('SUN','Morning',[sess('run','🏃 Run – 80 min easy','',[tag('t-run','Run'),tag('t-z2','Zone 2')])])
+]));
+bdData.push(buildWeekStd(13,'Week 13','Building to peak.','~14 hrs',
+  '110 min · 4×8 min @ 92–95% FTP','110 min Zone 2',
+  '75 min · 22×100 CSS + 8×200','65 min · 3,300 yds 700s',
+  '90 min · 3×22 min threshold',
+  '4 hr ride @ 80–83% FTP','55 min @ HM pace','1:45','none'));
+bdData.push(buildWeekStd(14,'Week 14','Biggest build volume.','~15 hrs',
+  '110 min · 5×4 min @ 110% FTP','110 min Zone 2',
+  '75 min · 24×100 CSS + 8×200','70 min · 3,400 yds 700s',
+  '90 min · 2×28 min threshold',
+  '4 hr ride @ 82–85% FTP','60 min @ HM pace','1:45','none'));
+bdData.push(buildWeekStd(15,'Week 15 — Bridge to Peak','Last build week.','~12.5 hrs',
+  '100 min · 3×10 min @ 92% FTP','100 min Zone 2',
+  '70 min · 20×100 CSS + 6×200','65 min · 3,100 yds 600s',
+  '85 min · 2×25 min threshold',
+  '3.5 hr ride @ 78–82% FTP','50 min @ HM pace','1:40','none'));
+document.getElementById('build-weeks').innerHTML=bdData.join('');
+
+// ══════ PEAK PHASE (11 weeks) ══════
+function peakWeekStd(num,title,sub,hrs,swTue,runWed,swWed,bikeThu,swFri,satSess,sunRun,open=false){
+  return buildWeek(num,title,sub,hrs,[
+    day('MON','🛌 Full Rest',[rest('No gym for the rest of the plan. Full rest every Monday in Peak.')]),
+    day('TUE','5–6:30am · PM',[
+      sess('swim',`🏊 AM: Race-Pace Swim – ${swTue}`,'Warm up 400 → main set at race pace → 200 cool. Race pace = the speed you will swim 1,900m on race day.',[tag('t-swim','Swim'),tag('t-css','Race Pace')]),
+      sess('bike','🚴 PM: 80 min · 2×20 min @ 80–85% FTP','After work. Sharp race-power intervals.',[tag('t-bike','Bike'),tag('t-ss','Race Power')])
+    ]),
+    day('WED','5–6:30am · PM',[
+      sess('run',`🏃 AM: Threshold Run – ${runWed}`,'10 min warmup → race-pace half marathon intervals → 10 min cooldown.',[tag('t-run','Run'),tag('t-z3','Race Pace')]),
+      sess('swim',`🏊 PM: Easy Swim – ${swWed}`,'Recovery swim. Loose and easy.',[tag('t-swim','Swim'),tag('t-z1','Easy')])
+    ]),
+    day('THU','5–6:30am',[
+      sess('bike',`🚴 AM: Race-Power Ride – ${bikeThu}`,'Hold 78–83% FTP the entire ride. Practice until second nature.',[tag('t-bike','Bike'),tag('t-ss','Race Power')])
+    ]),
+    day('FRI','5–6am',[
+      sess('swim',`🏊 AM: Easy Swim – ${swFri}`,'Short and easy. Fresh for tomorrow.',[tag('t-swim','Swim'),tag('t-z1','Easy')])
+    ]),
+    day('SAT','All day',[
+      sess('brick',`🧱 ${satSess}`,'Race execution. Race pacing. Race nutrition.',[tag('t-bike','Bike'),tag('t-run','Run'),tag('t-brick','Brick')])
+    ]),
+    day('SUN','Morning',[
+      sess('run',`🏃 Long Run – ${sunRun}`,'Zone 2 only. Race nutrition practice every run over 60 min.',[tag('t-run','Long Run'),tag('t-z2','Zone 2')])
+    ])
+  ],open);
+}
+const pkData=[];
+pkData.push(peakWeekStd(1,'Week 1 — Peak Begins','No gym. Race intensity on everything.','~11.5 hrs',
+  '60 min · 8×200 + 4×400 race pace','85 min · 3×15 min @ HM pace',
+  '40 min easy','95 min @ 78–82% FTP','30 min easy',
+  '3.5 hr ride @ 78–82% FTP → 45 min @ HM pace','1:45',true));
+pkData.push(peakWeekStd(2,'Week 2','Swim grows. Brick run pace maintained.','~12 hrs',
+  '65 min · 10×200 + 4×400 race pace','85 min · 3×18 min @ HM pace',
+  '40 min easy','100 min @ 80–82% FTP','30 min easy',
+  '3.5 hr ride @ 80–82% FTP → 50 min @ HM pace','1:45'));
+pkData.push(buildWeek(3,'Week 3 — SIM DAY #1 ⭐','Most important session of the entire year.','~13 hrs',[
+  day('MON','🛌 Full Rest',[rest()]),
+  day('TUE','5–6:30am · PM',[
+    sess('swim','🏊 AM: 65 min · 10×200 race pace','',[tag('t-swim','Swim'),tag('t-css','Race Pace')]),
+    sess('bike','🚴 PM: 80 min · 2×20 @ 82% FTP','',[tag('t-bike','Bike'),tag('t-ss','Race Power')])
+  ]),
+  day('WED','5–6:30am · PM',[
+    sess('run','🏃 AM: 85 min · 3×18 min HM pace','',[tag('t-run','Run'),tag('t-z3','Race Pace')]),
+    sess('swim','🏊 PM: Easy swim 40 min','',[tag('t-swim','Swim'),tag('t-z1','Easy')])
+  ]),
+  day('THU','5–6:30am',[sess('bike','🚴 95 min @ race power','',[tag('t-bike','Bike'),tag('t-ss','Race Power')])]),
+  day('FRI','Rest',[rest('Carb load dinner. Kit packed. 9 hrs sleep.')]),
+  day('SAT','ALL DAY',[
+    sess('brick','🧱 ⭐ SIM DAY #1: 1.2mi open water swim → 56mi @ 78–83% FTP → full 13.1mi @ HM race pace','THE most important workout of the year. Treat it exactly like race day. Same breakfast. Same nutrition. Same kit. Pace swim relaxed, bike at target power, run first mile easy then build to race pace.',[tag('t-swim','Swim'),tag('t-bike','Bike'),tag('t-run','Run'),tag('t-brick','SIM DAY')])
+  ]),
+  day('SUN','🧘 Full Recovery',[rest('Walk 20 min max. Eat. Sleep 10 hrs. You just did the hardest session of the plan.')])
+]));
+pkData.push(buildWeek(4,'Week 4 — Recovery','Recover from Sim Day.','~9 hrs',[
+  day('MON','🛌 Full Rest',[rest()]),
+  day('TUE','5–6am',[sess('bike','🚴 75 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('WED','5–6am',[sess('swim','🏊 45 min · 8×200 easy','',[tag('t-swim','Swim'),tag('t-z1','Easy')])]),
+  day('THU','5–6am',[sess('run','🏃 60 min easy','',[tag('t-run','Run'),tag('t-z1','Easy')])]),
+  day('FRI','Rest',[rest()]),
+  day('SAT','Morning',[sess('brick','🧱 Brick: 3 hr ride → 30 min easy run','',[tag('t-bike','Bike'),tag('t-run','Run'),tag('t-brick','Brick')])]),
+  day('SUN','Morning',[sess('run','🏃 80 min easy','',[tag('t-run','Run'),tag('t-z2','Zone 2')])])
+]));
+pkData.push(peakWeekStd(5,'Week 5','Full load returns.','~12.5 hrs',
+  '65 min · 10×200 + 4×400 race pace','85 min · 4×15 min @ HM pace',
+  '40 min easy','100 min @ 80–83% FTP','30 min easy',
+  '4 hr ride @ 80–83% FTP → 55 min @ HM pace','1:50'));
+pkData.push(peakWeekStd(6,'Week 6','Biggest peak volume week.','~13 hrs',
+  '70 min · 12×200 + 4×400 race pace','90 min · 4×18 min @ HM pace',
+  '45 min easy','105 min @ 80–83% FTP','35 min easy',
+  '4 hr ride @ 82–85% FTP → 55 min @ HM pace','1:50'));
+pkData.push(buildWeek(7,'Week 7 — SIM DAY #2 ⭐','Final simulation. Race dress rehearsal.','~13.5 hrs',[
+  day('MON','🛌 Full Rest',[rest()]),
+  day('TUE','5–6:30am · PM',[
+    sess('swim','🏊 AM: 70 min · 12×200 race pace','',[tag('t-swim','Swim'),tag('t-css','Race Pace')]),
+    sess('bike','🚴 PM: 85 min · 3×15 @ 82% FTP','',[tag('t-bike','Bike'),tag('t-ss','Race Power')])
+  ]),
+  day('WED','5–6:30am · PM',[
+    sess('run','🏃 AM: 90 min · 4×18 min HM pace','',[tag('t-run','Run'),tag('t-z3','Race Pace')]),
+    sess('swim','🏊 PM: Easy swim 40 min','',[tag('t-swim','Swim'),tag('t-z1','Easy')])
+  ]),
+  day('THU','5–6:30am',[sess('bike','🚴 100 min @ race power','',[tag('t-bike','Bike'),tag('t-ss','Race Power')])]),
+  day('FRI','Rest',[rest('Last Sim Day tomorrow. Carb load. Sleep 9 hrs.')]),
+  day('SAT','ALL DAY',[
+    sess('brick','🧱 ⭐ SIM DAY #2 — FINAL: 1.2mi swim → 56mi @ race power → full 13.1mi @ HM race pace','Race execution rehearsal. You know this. Execute.',[tag('t-swim','Swim'),tag('t-bike','Bike'),tag('t-run','Run'),tag('t-brick','SIM DAY')])
+  ]),
+  day('SUN','🧘 Full Recovery',[rest('Hard training is done. Taper begins.')])
+]));
+pkData.push(buildWeek(8,'Week 8 — Recovery → Taper Bridge','Volume drops, brief intensity.','~9.5 hrs',[
+  day('MON','🛌 Full Rest',[rest()]),
+  day('TUE','5–6am',[sess('bike','🚴 75 min · 2×12 min @ race power','',[tag('t-bike','Bike'),tag('t-ss','Race Power')])]),
+  day('WED','5–6am',[sess('swim','🏊 50 min · 8×200 race pace','',[tag('t-swim','Swim'),tag('t-css','Race Pace')])]),
+  day('THU','5–6am',[sess('run','🏃 65 min · 2×15 min @ HM pace','',[tag('t-run','Run'),tag('t-z3','Race Pace')])]),
+  day('FRI','Rest',[rest()]),
+  day('SAT','Morning',[sess('brick','🧱 Brick: 3 hr ride → 30 min run','Easy effort.',[tag('t-bike','Bike'),tag('t-run','Run'),tag('t-brick','Brick')])]),
+  day('SUN','Morning',[sess('run','🏃 80 min easy','',[tag('t-run','Run'),tag('t-z2','Zone 2')])])
+]));
+pkData.push(peakWeekStd(9,'Week 9','Building back.','~12 hrs',
+  '60 min · 10×200 race pace','80 min · 3×15 min @ HM pace',
+  '40 min easy','90 min @ race power','30 min easy',
+  '3.5 hr ride @ 80% FTP → 50 min @ HM pace','1:45'));
+pkData.push(peakWeekStd(10,'Week 10','Second to last hard week.','~12 hrs',
+  '60 min · 10×200 race pace','80 min · 2×22 min @ HM pace',
+  '40 min easy','90 min @ race power','30 min easy',
+  '3.5 hr ride @ 80–82% FTP → 50 min @ HM pace','1:45'));
+pkData.push(buildWeek(11,'Week 11 — Peak Wrap','Last week before taper.','~10 hrs',[
+  day('MON','🛌 Full Rest',[rest()]),
+  day('TUE','5–6:30am · PM',[
+    sess('swim','🏊 AM: 55 min · 8×200 race pace','',[tag('t-swim','Swim'),tag('t-css','Race Pace')]),
+    sess('bike','🚴 PM: 75 min · 2×15 @ race power','',[tag('t-bike','Bike'),tag('t-ss','Race Power')])
+  ]),
+  day('WED','5–6am',[sess('run','🏃 75 min · 2×18 min @ HM pace','',[tag('t-run','Run'),tag('t-z3','Race Pace')])]),
+  day('THU','5–6am',[sess('bike','🚴 80 min @ race power','',[tag('t-bike','Bike'),tag('t-ss','Race Power')])]),
+  day('FRI','Rest',[rest()]),
+  day('SAT','Morning',[sess('brick','🧱 Brick: 3 hr ride @ race power → 40 min @ HM pace','Last long brick.',[tag('t-bike','Bike'),tag('t-run','Run'),tag('t-brick','Brick')])]),
+  day('SUN','Morning',[sess('run','🏃 1:40 easy long run','Last long run.',[tag('t-run','Long Run'),tag('t-z2','Zone 2')])])
+]));
+document.getElementById('peak-weeks').innerHTML=pkData.join('');
+
+// ══════ TAPER ══════
+const tapData=[];
+tapData.push(buildWeek(1,'Taper Week 1','65% volume. Intensity stays.','~9 hrs',[
+  day('MON','🛌 Full Rest',[rest()]),
+  day('TUE','5–6:30am · PM',[
+    sess('swim','🏊 AM: 50 min · 6×200 + 4×100 race pace','',[tag('t-swim','Swim'),tag('t-css','Race Pace')]),
+    sess('bike','🚴 PM: 65 min · 2×12 min @ race power','',[tag('t-bike','Bike'),tag('t-ss','Race Power')])
+  ]),
+  day('WED','5–6am',[sess('run','🏃 65 min · 2×15 min @ HM pace','',[tag('t-run','Run'),tag('t-z3','Race Pace')])]),
+  day('THU','5–6am',[sess('swim','🏊 45 min · 6×200 race pace','',[tag('t-swim','Swim'),tag('t-css','Race Pace')])]),
+  day('FRI','Rest',[rest()]),
+  day('SAT','Morning',[sess('brick','🧱 Brick: 3 hr ride @ race power → 30 min @ HM pace','Last real brick.',[tag('t-bike','Bike'),tag('t-run','Run'),tag('t-brick','Brick')])]),
+  day('SUN','Morning',[sess('run','🏃 70 min easy','',[tag('t-run','Run'),tag('t-z2','Zone 2')])])
+],true));
+tapData.push(buildWeek(2,'Taper Week 2','45% volume. Short sharp efforts.','~6 hrs',[
+  day('MON','🛌 Full Rest',[rest()]),
+  day('TUE','5–6am',[sess('swim','🏊 40 min · 4×200 + 8×50 race pace','',[tag('t-swim','Swim'),tag('t-css','Race Pace')])]),
+  day('WED','5–6am',[sess('bike','🚴 55 min · 3×8 min @ race power','',[tag('t-bike','Bike'),tag('t-ss','Race Power')])]),
+  day('THU','5–6am',[sess('run','🏃 45 min · 4×5 min @ HM race pace','',[tag('t-run','Run'),tag('t-z3','Race Pace')])]),
+  day('FRI','Rest',[rest('Eat carbs. Hydrate. Sleep 9 hrs. Kit check.')]),
+  day('SAT','Morning',[
+    sess('bike','🚴 70 min · Zone 2 + 3×5 min race power','Openers.',[tag('t-bike','Bike'),tag('t-z2','Zone 2')]),
+    sess('run','🏃 Immediate 15 min · 5 min at HM pace middle','Short brick opener.',[tag('t-run','Run'),tag('t-brick','Brick')])
+  ]),
+  day('SUN','🛌 Full Rest',[rest('Restlessness you feel right now is fitness. Do nothing.')])
+]));
+tapData.push(buildWeek(3,'Race Week','20% volume. Openers only.','~2.5 hrs',[
+  day('MON','Rest/Travel',[rest('Travel if needed. High carbs all day. Lay out kit.')]),
+  day('TUE','Easy',[
+    sess('swim','🏊 15 min easy open water swim','See the course. Feel the water.',[tag('t-swim','Swim'),tag('t-z1','Easy')]),
+    sess('bike','🚴 25 min easy spin','Shake legs out.',[tag('t-bike','Bike'),tag('t-z1','Easy')])
+  ]),
+  day('WED','Easy',[sess('run','🏃 15 min easy + 4 strides','Remind legs of fast.',[tag('t-run','Run'),tag('t-z1','Easy')])]),
+  day('THU','Easy',[sess('swim','🏊 15 min easy + 4×50 race pace','Wake arms up.',[tag('t-swim','Swim'),tag('t-z1','Easy')])]),
+  day('FRI','Race Prep',[sess('rest','🎒 Rack bike. Walk transition. Eat carbs all day. Sleep 9pm.','Kit packed and ready. Nothing hard today.',[tag('t-rest','Logistics')])]),
+  day('SAT','🏅 RACE DAY',[sess('brick','🏅 IRONMAN 70.3 — 70.3 Miles','12 months of training. Execute the plan you have rehearsed.',[tag('t-swim','Swim'),tag('t-bike','Bike'),tag('t-run','Run'),tag('t-brick','RACE DAY')])]),
+  day('SUN','🎉 You Did It',[sess('rest','🏅 Ironman 70.3 Finisher','Eat everything. Sleep in. You earned every bit of it.',[tag('t-rest','🏅 70.3')])])
+]));
+document.getElementById('taper-weeks').innerHTML=tapData.join('');
+
+// ══════ RACE DAY ══════
+document.getElementById('raceday-content').innerHTML=`
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;margin-bottom:20px">
+${[
+  {c:'var(--swim)',i:'🏊',s:'Swim — 1.2 Miles',t:'Goal: 30–45 min',tips:['Seed yourself honestly — middle of your expected wave','First 200m chaotic. Stay calm. Find stroke. Breathe.','If you panic: roll to back, float, breathe, roll back. You practiced this.','Draft legally — find feet beside someone your pace','Sight every 6 strokes. Straight line saves 50–100 yards.','Exit the water moving. T1 is where time is made.','Wetsuit if legal — 3–5 min free time every race. Always wear it.']},
+  {c:'var(--bike)',i:'🚴',s:'Bike — 56 Miles',t:'Goal: 75–85% FTP',tips:['Miles 0–10: HR elevated from swim. Cap power 5–10W below target.','Miles 10–45: lock into race power. Fuel every 15 min by your watch.','Miles 45–56: hold watts. HR climb is normal here — hold it.','Above 85% FTP sustained costs 20+ min on the run. No exceptions.','Aero position the entire ride. Every minute upright costs time.','Sodium: 400–500mg/hr from mile 10. Prevents run cramping.','You paced this exact ride in SIM days. Trust your training.']},
+  {c:'var(--run)',i:'🏃',s:'Half Marathon — 13.1 Miles',t:'Goal: Race it strong',tips:['First mile: run 15–20 sec/mi slower than goal even if legs feel great.','Miles 1–4: legs adjust from bike. Normal. Trust it.','Miles 4–10: your race. Build effort if feeling strong.','Miles 10–13.1: empty the tank. 6 months of race-pace training for this.','Walk aid stations: grab drink, toss, go. Saves gut and mental energy.','Gel every 20 min. Electrolyte every station. Coke from mile 9.','Your SIM Day run pace is your target. You have already done this once.']},
+  {c:'var(--muted)',i:'⚡',s:'Transitions T1 + T2',t:'Goal: Calm and practiced',tips:['T1: wetsuit off → helmet on (race rule, before anything else) → shoes → go','Sunscreen in T1 bag. 5+ hrs in sun without it is a disaster.','T2: rack bike → helmet off → race belt on → run shoes → cap → go','Do not sit down in T2. Standing back up off a chair is harder than you think.','Walk transition area twice the day before. Know your rack location cold.','Sub-3 min combined T1+T2 with practice. You rehearsed this in training.']}
+].map(s=>`<div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;border-top:3px solid ${s.c}"><div style="font-size:1.3rem;margin-bottom:6px">${s.i}</div><div style="font-size:.9rem;font-weight:700;margin-bottom:2px">${s.s}</div><div style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);margin-bottom:12px">${s.t}</div><ul style="list-style:none">${s.tips.map(t=>`<li style="font-size:.76rem;color:var(--muted);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;line-height:1.4"><span style="color:${s.c};flex-shrink:0">·</span>${t}</li>`).join('')}</ul></div>`).join('')}
+</div>`;
+
+// ══════ NUTRITION ══════
+document.getElementById('nutrition-content').innerHTML=`
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px">
+${[
+  {i:'🚴',t:'On-Bike Fueling',items:['60–75g carbs/hr. Train gut to this from Off-Season week 1.','Glucose:fructose 2:1 ratio — dual transport enables higher absorption','Start fueling at mile 10 not mile 0 — gut takes 10 min to turn on after swim','Feed every 15 min by watch timer. Never rely on hunger.','Sodium 400–500mg/hr. LMNT, Precision Hydration, or SIS tabs.','Exact race nutrition practiced every Saturday brick from Build onward.','Race products: Maurten 320, SIS Beta Fuel, Precision Fuel 90']},
+  {i:'🏃',t:'On-Run Fueling',items:['40–60g carbs/hr. Gels and liquid only at race HR — solid food fails.','Gel every 20–25 min. Pre-set watch timer before the run leg starts.','Water + electrolyte drink at every aid station without exception.','Coke from mile 9 — glucose + caffeine combination works when gels stop.','If stomach shuts down: liquid carbs + electrolytes only, cut gel frequency.','This exact protocol tested on every long run over 60 min from Base phase.']},
+  {i:'🌅',t:'Race Morning',items:['Wake up 3–3.5 hrs before swim start. Same routine you practiced.','Breakfast: 600–800 cal familiar food. Oatmeal, bagel, banana. Nothing new.','60 min before: 200 cal liquid carbs. SIS gel or Maurten 160.','Caffeine 3–6mg/kg bodyweight, 60 min before start. Real measurable boost.','Hydrate with electrolytes. Pale yellow urine = properly hydrated.','Nothing on race day you have not tested multiple times in training.']},
+  {i:'🌙',t:'Carb Loading',items:['Day -2 and -1: 10–12g carbs/kg bodyweight. Top off glycogen stores.','Night before: pasta, rice, or potato. High carb, low fat, low fiber.','Dinner by 7pm. Digestion time before sleep.','8–9 hrs sleep. More valuable than any last-minute training or prep.','Hydrate through the day before — urinating every 1.5 hrs is the target.','Do not overdrink race morning — hyponatremia is a real race risk.']},
+  {i:'💪',t:'Training + Gym Nutrition',items:['Pre-gym 30–60 min before: 30g carbs + 20g protein. Rice + chicken.','Post-gym within 30 min: 40g protein + 50g carbs. Non-negotiable window.','On double training days: eat a full meal between sessions.','Protein daily: 1.6–2.0g/kg bodyweight. Supports gym + tri combined load.','Carbs: 6–8g/kg on big days. 4–5g/kg on easy or rest days.','Never undereat in training. Caloric deficit + this volume = breakdown.']},
+  {i:'💊',t:'Supplements',items:['Creatine 5g/day off-season and base — gym strength gains. Stop 6 wks pre-race.','Beta-alanine 6.4g/day for 8 wks — threshold interval improvement.','Beetroot juice 400–600mg nitrate 2–3 hrs pre — lowers O2 cost 1–2%.','Caffeine 200mg race morning + 100mg on bike at mile 35.','Vitamin D 2,000–4,000 IU/day — critical training before sunrise daily.','Omega-3 1–3g EPA/DHA — reduces training inflammation across the year.']}
+].map(n=>`<div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px"><div style="font-size:1.3rem;margin-bottom:8px">${n.i}</div><div style="font-size:.88rem;font-weight:700;margin-bottom:10px">${n.t}</div><ul style="list-style:none">${n.items.map(i=>`<li style="font-size:.76rem;color:var(--muted);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;line-height:1.4"><span style="color:var(--bike);flex-shrink:0">→</span>${i}</li>`).join('')}</ul></div>`).join('')}
+</div>`;
+
+// ══════ PHASE NAV BUTTONS ══════
+[
+  {navId:'base-phase-nav',total:13,containerId:'base-weeks'},
+  {navId:'build-phase-nav',total:15,containerId:'build-weeks'},
+  {navId:'peak-phase-nav',total:11,containerId:'peak-weeks'},
+].forEach(cfg=>{
+  const nav=document.getElementById(cfg.navId);
+  if(!nav)return;
+  for(let i=1;i<=cfg.total;i++){
+    const btn=document.createElement('button');
+    btn.className='phase-btn'+(i===1?' active':'');
+    btn.textContent=`Week ${i}`;
+    btn.onclick=(()=>{
+      const wn=i;
+      return function(){
+        document.querySelectorAll(`#${cfg.navId} .phase-btn`).forEach(b=>b.classList.remove('active'));
+        this.classList.add('active');
+        const accs=document.getElementById(cfg.containerId).querySelectorAll('.week-acc');
+        accs.forEach((a,idx)=>{
+          const body=a.querySelector('.week-body');
+          const chev=a.querySelector('.week-chevron');
+          if(idx===wn-1){body.classList.add('open');chev.textContent='▲';a.scrollIntoView({behavior:'smooth',block:'nearest'});}
+          else{body.classList.remove('open');chev.textContent='▼';}
+        });
+      };
+    })();
+    nav.appendChild(btn);
+  }
+});
+</script>
+</body>
+</html>
