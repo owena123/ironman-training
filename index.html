@@ -160,6 +160,57 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-
 
 hr{border:none;border-top:1px solid var(--border);margin:24px 0}
 @media(max-width:520px){.day-card{grid-template-columns:1fr}}
+
+/* ══ TRACKER ══ */
+.tracker-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:24px}
+.log-form{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:22px}
+.log-form h3{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:1px;margin-bottom:16px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.form-row.triple{grid-template-columns:1fr 1fr 1fr}
+.form-row.single{grid-template-columns:1fr}
+.field-group{display:flex;flex-direction:column;gap:4px}
+.field-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.field-input{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-family:'Inter',sans-serif;font-size:.82rem;outline:none;transition:border-color .15s;width:100%}
+.field-input:focus{border-color:var(--bike)}
+select.field-input option{background:var(--surface)}
+.log-btn{width:100%;margin-top:12px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.4);color:var(--bike);font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;padding:10px;border-radius:6px;cursor:pointer;transition:all .15s}
+.log-btn:hover{background:rgba(245,158,11,.25)}
+.log-entries{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:22px;max-height:420px;overflow-y:auto}
+.log-entries h3{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:1px;margin-bottom:16px}
+.entry-row{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);gap:12px}
+.entry-row:last-child{border-bottom:none}
+.entry-left{display:flex;flex-direction:column;gap:3px}
+.entry-type{font-size:.75rem;font-weight:600}
+.entry-meta{font-size:.7rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.entry-delete{background:none;border:none;color:#374151;cursor:pointer;font-size:.8rem;padding:2px 6px;border-radius:4px;transition:color .15s;flex-shrink:0}
+.entry-delete:hover{color:var(--gym)}
+.stat-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:24px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+.stat-card-num{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;line-height:1;margin-bottom:2px}
+.stat-card-lbl{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.chart-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:22px;margin-bottom:16px}
+.chart-box h3{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:1px;margin-bottom:4px}
+.chart-sub{font-size:.72rem;color:var(--muted);margin-bottom:16px;font-family:'JetBrains Mono',monospace}
+.chart-canvas{width:100%!important;max-height:240px}
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:640px){.chart-row{grid-template-columns:1fr}.form-row,.form-row.triple{grid-template-columns:1fr}}
+.empty-state{text-align:center;padding:32px;color:var(--muted);font-size:.8rem}
+.empty-icon{font-size:2rem;margin-bottom:8px}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.filter-btn{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:5px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all .15s}
+.filter-btn:hover{color:var(--text)}
+.filter-btn.active{border-color:var(--bike);color:var(--bike);background:rgba(245,158,11,.1)}
+.pr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:24px}
+.pr-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;position:relative;overflow:hidden}
+.pr-card::before{content:'🏆';position:absolute;right:10px;top:10px;font-size:1.2rem;opacity:.2}
+.pr-type{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.pr-val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;line-height:1;margin-bottom:2px}
+.pr-date{font-size:.65rem;color:var(--muted)}
+.week-vol-bar{display:flex;align-items:center;gap:12px;margin-bottom:8px;font-size:.75rem}
+.wvb-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);min-width:40px}
+.wvb-track{flex:1;background:var(--faint);border-radius:3px;height:20px;overflow:hidden}
+.wvb-fill{height:100%;border-radius:3px;display:flex;align-items:center;padding-left:8px;font-size:.62rem;font-weight:600;font-family:'JetBrains Mono',monospace;min-width:30px;transition:width .6s ease}
+.tag-swim-c{color:var(--swim)}.tag-bike-c{color:var(--bike)}.tag-run-c{color:var(--run)}.tag-gym-c{color:var(--gym)}.tag-brick-c{color:var(--brick)}
 </style>
 </head>
 <body>
@@ -190,6 +241,7 @@ hr{border:none;border-top:1px solid var(--border);margin:24px 0}
   <button class="topnav-btn" onclick="switchTop('taper',this)">🏁 Taper</button>
   <button class="topnav-btn" onclick="switchTop('raceday',this)">🏅 Race Day</button>
   <button class="topnav-btn" onclick="switchTop('nutrition',this)">🔋 Nutrition</button>
+<button class="topnav-btn" onclick="switchTop('tracker',this)">📊 Tracker</button>
 </nav>
 
 <!-- OVERVIEW -->
@@ -1188,6 +1240,462 @@ ${[
     nav.appendChild(btn);
   }
 });
+</script>
+
+<!-- TRACKER -->
+<div class="panel" id="panel-tracker">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:3px;color:var(--bike);text-transform:uppercase;margin-bottom:8px">Workout Tracker</div>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:1px;margin-bottom:20px">Log Your Training</h2>
+
+  <!-- STAT SUMMARY CARDS -->
+  <div class="stat-cards" id="stat-cards">
+    <div class="stat-card"><div class="stat-card-num" id="stat-total-sessions" style="color:var(--bike)">0</div><div class="stat-card-lbl">Total Sessions</div></div>
+    <div class="stat-card"><div class="stat-card-num" id="stat-total-miles" style="color:var(--run)">0</div><div class="stat-card-lbl">Total Miles</div></div>
+    <div class="stat-card"><div class="stat-card-num" id="stat-total-hrs" style="color:var(--swim)">0</div><div class="stat-card-lbl">Total Hours</div></div>
+    <div class="stat-card"><div class="stat-card-num" id="stat-total-cal" style="color:var(--gym)">0</div><div class="stat-card-lbl">Calories Burned</div></div>
+    <div class="stat-card"><div class="stat-card-num" id="stat-swim-yards" style="color:var(--swim)">0</div><div class="stat-card-lbl">Swim Yards</div></div>
+    <div class="stat-card"><div class="stat-card-num" id="stat-streak" style="color:var(--brick)">0</div><div class="stat-card-lbl">Day Streak</div></div>
+  </div>
+
+  <!-- LOG FORM + RECENT ENTRIES -->
+  <div class="tracker-grid">
+    <div class="log-form">
+      <h3>Log a Workout</h3>
+      <div class="form-row">
+        <div class="field-group">
+          <label class="field-label">Date</label>
+          <input type="date" class="field-input" id="log-date">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Type</label>
+          <select class="field-input" id="log-type" onchange="updateLogFields()">
+            <option value="swim">🏊 Swim</option>
+            <option value="bike">🚴 Bike</option>
+            <option value="run">🏃 Run</option>
+            <option value="brick">🧱 Brick</option>
+            <option value="gym">💪 Gym</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row triple">
+        <div class="field-group">
+          <label class="field-label" id="dist-label">Distance (miles)</label>
+          <input type="number" class="field-input" id="log-distance" placeholder="0.0" step="0.1" min="0">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Duration (min)</label>
+          <input type="number" class="field-input" id="log-duration" placeholder="60" min="0">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Calories</label>
+          <input type="number" class="field-input" id="log-calories" placeholder="0" min="0">
+        </div>
+      </div>
+      <div class="form-row" id="swim-yards-row" style="display:none">
+        <div class="field-group">
+          <label class="field-label">Swim Yards</label>
+          <input type="number" class="field-input" id="log-yards" placeholder="2000" min="0">
+        </div>
+        <div class="field-group">
+          <label class="field-label">CSS Pace (/100 yds)</label>
+          <input type="text" class="field-input" id="log-pace" placeholder="1:45">
+        </div>
+      </div>
+      <div class="form-row" id="bike-fields-row" style="display:none">
+        <div class="field-group">
+          <label class="field-label">Avg Power (watts)</label>
+          <input type="number" class="field-input" id="log-power" placeholder="220" min="0">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Elevation (ft)</label>
+          <input type="number" class="field-input" id="log-elevation" placeholder="500" min="0">
+        </div>
+      </div>
+      <div class="form-row" id="run-fields-row" style="display:none">
+        <div class="field-group">
+          <label class="field-label">Avg Pace (min/mi)</label>
+          <input type="text" class="field-input" id="log-run-pace" placeholder="8:30">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Zone (1–5)</label>
+          <input type="number" class="field-input" id="log-zone" placeholder="2" min="1" max="5">
+        </div>
+      </div>
+      <div class="form-row single">
+        <div class="field-group">
+          <label class="field-label">Feel (1–10) + Notes</label>
+          <div style="display:flex;gap:8px">
+            <input type="number" class="field-input" id="log-feel" placeholder="7" min="1" max="10" style="width:80px;flex-shrink:0">
+            <input type="text" class="field-input" id="log-notes" placeholder="How did it go?">
+          </div>
+        </div>
+      </div>
+      <button class="log-btn" onclick="logWorkout()">+ LOG WORKOUT</button>
+    </div>
+
+    <div class="log-entries">
+      <h3>Recent Workouts</h3>
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterEntries('all',this)">All</button>
+        <button class="filter-btn" onclick="filterEntries('swim',this)">Swim</button>
+        <button class="filter-btn" onclick="filterEntries('bike',this)">Bike</button>
+        <button class="filter-btn" onclick="filterEntries('run',this)">Run</button>
+        <button class="filter-btn" onclick="filterEntries('brick',this)">Brick</button>
+        <button class="filter-btn" onclick="filterEntries('gym',this)">Gym</button>
+      </div>
+      <div id="entries-list"></div>
+    </div>
+  </div>
+
+  <!-- PERSONAL RECORDS -->
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:1px;margin-bottom:14px">🏆 Personal Records</div>
+  <div class="pr-grid" id="pr-grid"></div>
+
+  <!-- CHARTS -->
+  <div class="chart-row">
+    <div class="chart-box">
+      <h3>Weekly Volume</h3>
+      <div class="chart-sub">Total minutes per week by discipline</div>
+      <canvas class="chart-canvas" id="chart-weekly"></canvas>
+    </div>
+    <div class="chart-box">
+      <h3>Discipline Split</h3>
+      <div class="chart-sub">Time distribution across all sessions</div>
+      <canvas class="chart-canvas" id="chart-split"></canvas>
+    </div>
+  </div>
+  <div class="chart-row">
+    <div class="chart-box">
+      <h3>Run Pace Trend</h3>
+      <div class="chart-sub">Average pace per mile over time (lower = faster)</div>
+      <canvas class="chart-canvas" id="chart-pace"></canvas>
+    </div>
+    <div class="chart-box">
+      <h3>Bike Power Trend</h3>
+      <div class="chart-sub">Average watts over time</div>
+      <canvas class="chart-canvas" id="chart-power"></canvas>
+    </div>
+  </div>
+  <div class="chart-box">
+    <h3>Weekly Mileage — Swim · Bike · Run</h3>
+    <div class="chart-sub">Distance per week by discipline</div>
+    <canvas class="chart-canvas" id="chart-miles" style="max-height:200px"></canvas>
+  </div>
+</div>
+
+<script>
+
+// ══════ WORKOUT TRACKER ══════
+let workouts = JSON.parse(localStorage.getItem('im703_workouts') || '[]');
+let activeFilter = 'all';
+let charts = {};
+
+const typeColors = {
+  swim: getComputedStyle(document.documentElement).getPropertyValue('--swim').trim() || '#0ea5e9',
+  bike: getComputedStyle(document.documentElement).getPropertyValue('--bike').trim() || '#f59e0b',
+  run: getComputedStyle(document.documentElement).getPropertyValue('--run').trim() || '#22c55e',
+  brick: getComputedStyle(document.documentElement).getPropertyValue('--brick').trim() || '#a855f7',
+  gym: getComputedStyle(document.documentElement).getPropertyValue('--gym').trim() || '#ef4444',
+};
+const typeEmoji = {swim:'🏊',bike:'🚴',run:'🏃',brick:'🧱',gym:'💪'};
+
+function saveWorkouts(){ localStorage.setItem('im703_workouts', JSON.stringify(workouts)); }
+
+function updateLogFields(){
+  const t = document.getElementById('log-type').value;
+  document.getElementById('swim-yards-row').style.display = t==='swim' ? 'grid' : 'none';
+  document.getElementById('bike-fields-row').style.display = (t==='bike'||t==='brick') ? 'grid' : 'none';
+  document.getElementById('run-fields-row').style.display = (t==='run'||t==='brick') ? 'grid' : 'none';
+  document.getElementById('dist-label').textContent = t==='swim' ? 'Distance (miles)' : 'Distance (miles)';
+}
+
+function logWorkout(){
+  const date = document.getElementById('log-date').value;
+  const type = document.getElementById('log-type').value;
+  const distance = parseFloat(document.getElementById('log-distance').value) || 0;
+  const duration = parseInt(document.getElementById('log-duration').value) || 0;
+  const calories = parseInt(document.getElementById('log-calories').value) || 0;
+  const feel = parseInt(document.getElementById('log-feel').value) || 0;
+  const notes = document.getElementById('log-notes').value;
+  const yards = parseInt(document.getElementById('log-yards').value) || 0;
+  const pace = document.getElementById('log-pace').value;
+  const power = parseInt(document.getElementById('log-power').value) || 0;
+  const elevation = parseInt(document.getElementById('log-elevation').value) || 0;
+  const runPace = document.getElementById('log-run-pace').value;
+  const zone = parseInt(document.getElementById('log-zone').value) || 0;
+
+  if(!date){ alert('Please select a date'); return; }
+  if(!duration){ alert('Please enter duration'); return; }
+
+  const workout = {
+    id: Date.now(),
+    date, type, distance, duration, calories, feel, notes,
+    yards, pace, power, elevation, runPace, zone
+  };
+
+  workouts.unshift(workout);
+  saveWorkouts();
+  refreshTracker();
+  // clear form
+  document.getElementById('log-distance').value = '';
+  document.getElementById('log-duration').value = '';
+  document.getElementById('log-calories').value = '';
+  document.getElementById('log-feel').value = '';
+  document.getElementById('log-notes').value = '';
+  document.getElementById('log-yards').value = '';
+  document.getElementById('log-pace').value = '';
+  document.getElementById('log-power').value = '';
+  document.getElementById('log-elevation').value = '';
+  document.getElementById('log-run-pace').value = '';
+  document.getElementById('log-zone').value = '';
+}
+
+function deleteWorkout(id){
+  workouts = workouts.filter(w => w.id !== id);
+  saveWorkouts();
+  refreshTracker();
+}
+
+function filterEntries(type, btn){
+  activeFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderEntries();
+}
+
+function renderEntries(){
+  const list = document.getElementById('entries-list');
+  const filtered = activeFilter==='all' ? workouts : workouts.filter(w=>w.type===activeFilter);
+  if(!filtered.length){
+    list.innerHTML = '<div class="empty-state"><div class="empty-icon">🏁</div>No workouts logged yet. Log your first session above.</div>';
+    return;
+  }
+  list.innerHTML = filtered.slice(0,50).map(w => {
+    const color = typeColors[w.type] || '#888';
+    const meta = [
+      w.distance ? w.distance+'mi' : '',
+      w.yards ? w.yards+'yds' : '',
+      w.duration ? w.duration+'min' : '',
+      w.calories ? w.calories+'cal' : '',
+      w.power ? w.power+'W' : '',
+      w.runPace ? w.runPace+'/mi' : '',
+      w.feel ? '😤'+w.feel+'/10' : '',
+    ].filter(Boolean).join(' · ');
+    return `<div class="entry-row">
+      <div class="entry-left">
+        <div class="entry-type" style="color:${color}">${typeEmoji[w.type]} ${w.type.charAt(0).toUpperCase()+w.type.slice(1)} · ${w.date}</div>
+        <div class="entry-meta">${meta}</div>
+        ${w.notes ? `<div style="font-size:.7rem;color:#4a5568;margin-top:2px;font-style:italic">${w.notes}</div>` : ''}
+      </div>
+      <button class="entry-delete" onclick="deleteWorkout(${w.id})">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function renderStats(){
+  const totalSessions = workouts.length;
+  const totalMiles = workouts.reduce((s,w)=>s+(w.distance||0),0);
+  const totalMins = workouts.reduce((s,w)=>s+(w.duration||0),0);
+  const totalCal = workouts.reduce((s,w)=>s+(w.calories||0),0);
+  const totalYards = workouts.reduce((s,w)=>s+(w.yards||0),0);
+
+  // streak
+  const dates = [...new Set(workouts.map(w=>w.date))].sort().reverse();
+  let streak = 0;
+  if(dates.length){
+    let cur = new Date(); cur.setHours(0,0,0,0);
+    for(const d of dates){
+      const wd = new Date(d+'T00:00:00');
+      const diff = Math.round((cur-wd)/(86400000));
+      if(diff===0||diff===1){ streak++; cur=wd; }
+      else break;
+    }
+  }
+
+  document.getElementById('stat-total-sessions').textContent = totalSessions;
+  document.getElementById('stat-total-miles').textContent = totalMiles.toFixed(1);
+  document.getElementById('stat-total-hrs').textContent = (totalMins/60).toFixed(1);
+  document.getElementById('stat-total-cal').textContent = totalCal.toLocaleString();
+  document.getElementById('stat-swim-yards').textContent = totalYards.toLocaleString();
+  document.getElementById('stat-streak').textContent = streak;
+}
+
+function renderPRs(){
+  const grid = document.getElementById('pr-grid');
+  const prs = [];
+  const bikes = workouts.filter(w=>w.type==='bike'&&w.distance>0);
+  const runs = workouts.filter(w=>(w.type==='run'||w.type==='brick')&&w.distance>0);
+  const swims = workouts.filter(w=>w.type==='swim'&&w.yards>0);
+  const bricks = workouts.filter(w=>w.type==='brick'&&w.duration>0);
+  const gyms = workouts.filter(w=>w.type==='gym'&&w.duration>0);
+
+  if(bikes.length){
+    const best = bikes.reduce((a,b)=>b.distance>a.distance?b:a);
+    prs.push({type:'Longest Ride',val:best.distance+'mi',date:best.date,color:typeColors.bike});
+    const fastest = bikes.filter(b=>b.distance>0&&b.duration>0).reduce((a,b)=>{
+      return (b.distance/b.duration)>(a.distance/a.duration)?b:a;
+    }, bikes[0]);
+    if(fastest) prs.push({type:'Fastest Avg Speed',val:((fastest.distance/(fastest.duration/60)).toFixed(1))+'mph',date:fastest.date,color:typeColors.bike});
+    const maxPower = bikes.filter(b=>b.power>0);
+    if(maxPower.length){const bp=maxPower.reduce((a,b)=>b.power>a.power?b:a);prs.push({type:'Peak Avg Power',val:bp.power+'W',date:bp.date,color:typeColors.bike});}
+  }
+  if(runs.length){
+    const longest = runs.reduce((a,b)=>b.distance>a.distance?b:a);
+    prs.push({type:'Longest Run',val:longest.distance+'mi',date:longest.date,color:typeColors.run});
+    const paced = runs.filter(r=>r.runPace);
+    if(paced.length){
+      const fastest = paced.reduce((a,b)=>{
+        const toSec=p=>{const[m,s]=(p||'99:99').split(':').map(Number);return m*60+(s||0);};
+        return toSec(b.runPace)<toSec(a.runPace)?b:a;
+      });
+      prs.push({type:'Fastest Run Pace',val:fastest.runPace+'/mi',date:fastest.date,color:typeColors.run});
+    }
+  }
+  if(swims.length){
+    const best=swims.reduce((a,b)=>b.yards>a.yards?b:a);
+    prs.push({type:'Longest Swim',val:best.yards.toLocaleString()+'yds',date:best.date,color:typeColors.swim});
+  }
+  if(bricks.length){
+    const best=bricks.reduce((a,b)=>b.duration>a.duration?b:a);
+    prs.push({type:'Longest Brick',val:best.duration+'min',date:best.date,color:typeColors.brick});
+  }
+
+  if(!prs.length){grid.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">🏆</div>Log workouts to see your personal records.</div>';return;}
+  grid.innerHTML = prs.map(p=>`
+    <div class="pr-card">
+      <div class="pr-type">${p.type}</div>
+      <div class="pr-val" style="color:${p.color}">${p.val}</div>
+      <div class="pr-date">${p.date}</div>
+    </div>`).join('');
+}
+
+function getWeekLabel(dateStr){
+  const d = new Date(dateStr+'T00:00:00');
+  const start = new Date(d); start.setDate(d.getDate()-d.getDay());
+  return start.toISOString().slice(0,10);
+}
+
+function renderCharts(){
+  // Chart.js must be loaded
+  if(typeof Chart === 'undefined') return;
+
+  const destroyChart = id => { if(charts[id]){charts[id].destroy();delete charts[id];} };
+
+  // 1. Weekly Volume (stacked bar by discipline)
+  destroyChart('weekly');
+  const weekMap = {};
+  workouts.forEach(w=>{
+    const wk = getWeekLabel(w.date);
+    if(!weekMap[wk]) weekMap[wk]={swim:0,bike:0,run:0,brick:0,gym:0};
+    weekMap[wk][w.type] = (weekMap[wk][w.type]||0) + (w.duration||0);
+  });
+  const weekLabels = Object.keys(weekMap).sort().slice(-12);
+  const types = ['swim','bike','run','brick','gym'];
+  charts['weekly'] = new Chart(document.getElementById('chart-weekly'),{
+    type:'bar',
+    data:{
+      labels: weekLabels.map(w=>w.slice(5)),
+      datasets: types.map(t=>({
+        label:t.charAt(0).toUpperCase()+t.slice(1),
+        data: weekLabels.map(wk=>(weekMap[wk]?.[t]||0)),
+        backgroundColor: typeColors[t]+'99',
+        borderColor: typeColors[t],
+        borderWidth:1
+      }))
+    },
+    options:{responsive:true,plugins:{legend:{labels:{color:'#64748b',font:{size:11}}}},scales:{x:{stacked:true,ticks:{color:'#64748b'}},y:{stacked:true,ticks:{color:'#64748b'},grid:{color:'#1c2530'}}}}
+  });
+
+  // 2. Discipline Split (doughnut)
+  destroyChart('split');
+  const splitTotals = types.map(t=>workouts.filter(w=>w.type===t).reduce((s,w)=>s+(w.duration||0),0));
+  charts['split'] = new Chart(document.getElementById('chart-split'),{
+    type:'doughnut',
+    data:{
+      labels:types.map(t=>t.charAt(0).toUpperCase()+t.slice(1)),
+      datasets:[{data:splitTotals,backgroundColor:types.map(t=>typeColors[t]+'cc'),borderColor:types.map(t=>typeColors[t]),borderWidth:2}]
+    },
+    options:{responsive:true,plugins:{legend:{labels:{color:'#64748b',font:{size:11}}}}}
+  });
+
+  // 3. Run pace trend
+  destroyChart('pace');
+  const paceToSec = p=>{if(!p)return null;const[m,s]=(p||'').split(':').map(Number);return isNaN(m)?null:m*60+(s||0);};
+  const runData = workouts.filter(w=>(w.type==='run'||w.type==='brick')&&w.runPace).slice(-20).reverse();
+  charts['pace'] = new Chart(document.getElementById('chart-pace'),{
+    type:'line',
+    data:{
+      labels:runData.map(w=>w.date.slice(5)),
+      datasets:[{label:'Pace (sec/mi)',data:runData.map(w=>paceToSec(w.runPace)),borderColor:typeColors.run,backgroundColor:typeColors.run+'22',tension:.3,pointRadius:4,fill:true}]
+    },
+    options:{responsive:true,plugins:{legend:{labels:{color:'#64748b',font:{size:11}}}},scales:{x:{ticks:{color:'#64748b'}},y:{reverse:true,ticks:{color:'#64748b',callback:v=>{const m=Math.floor(v/60);const s=v%60;return m+':'+(s<10?'0':'')+s;}},grid:{color:'#1c2530'}}}}
+  });
+
+  // 4. Bike power trend
+  destroyChart('power');
+  const powerData = workouts.filter(w=>(w.type==='bike'||w.type==='brick')&&w.power>0).slice(-20).reverse();
+  charts['power'] = new Chart(document.getElementById('chart-power'),{
+    type:'line',
+    data:{
+      labels:powerData.map(w=>w.date.slice(5)),
+      datasets:[{label:'Avg Power (W)',data:powerData.map(w=>w.power),borderColor:typeColors.bike,backgroundColor:typeColors.bike+'22',tension:.3,pointRadius:4,fill:true}]
+    },
+    options:{responsive:true,plugins:{legend:{labels:{color:'#64748b',font:{size:11}}}},scales:{x:{ticks:{color:'#64748b'}},y:{ticks:{color:'#64748b'},grid:{color:'#1c2530'}}}}
+  });
+
+  // 5. Weekly miles stacked
+  destroyChart('miles');
+  const mileMap = {};
+  workouts.forEach(w=>{
+    const wk=getWeekLabel(w.date);
+    if(!mileMap[wk]) mileMap[wk]={swim:0,bike:0,run:0};
+    if(w.type==='swim') mileMap[wk].swim+=(w.distance||0);
+    else if(w.type==='bike'||w.type==='brick') mileMap[wk].bike+=(w.distance||0);
+    else if(w.type==='run'||w.type==='brick') mileMap[wk].run+=(w.distance||0);
+  });
+  const mileWeeks = Object.keys(mileMap).sort().slice(-12);
+  charts['miles'] = new Chart(document.getElementById('chart-miles'),{
+    type:'bar',
+    data:{
+      labels:mileWeeks.map(w=>w.slice(5)),
+      datasets:[
+        {label:'Swim',data:mileWeeks.map(w=>mileMap[w]?.swim||0),backgroundColor:typeColors.swim+'99',borderColor:typeColors.swim,borderWidth:1,stack:'a'},
+        {label:'Bike',data:mileWeeks.map(w=>mileMap[w]?.bike||0),backgroundColor:typeColors.bike+'99',borderColor:typeColors.bike,borderWidth:1,stack:'a'},
+        {label:'Run',data:mileWeeks.map(w=>mileMap[w]?.run||0),backgroundColor:typeColors.run+'99',borderColor:typeColors.run,borderWidth:1,stack:'a'},
+      ]
+    },
+    options:{responsive:true,plugins:{legend:{labels:{color:'#64748b',font:{size:11}}}},scales:{x:{stacked:true,ticks:{color:'#64748b'}},y:{stacked:true,ticks:{color:'#64748b'},grid:{color:'#1c2530'}}}}
+  });
+}
+
+function refreshTracker(){
+  renderStats();
+  renderEntries();
+  renderPRs();
+  renderCharts();
+}
+
+// Set today's date as default
+document.addEventListener('DOMContentLoaded',()=>{
+  const today = new Date().toISOString().slice(0,10);
+  document.getElementById('log-date').value = today;
+  updateLogFields();
+  refreshTracker();
+});
+
+// Load Chart.js dynamically
+const chartScript = document.createElement('script');
+chartScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js';
+chartScript.onload = () => refreshTracker();
+document.head.appendChild(chartScript);
+
+// Refresh charts when tracker tab opened
+const origSwitchTop = switchTop;
+window.switchTop = function(id, btn){
+  origSwitchTop(id, btn);
+  if(id==='tracker') setTimeout(renderCharts, 100);
+};
+
 </script>
 </body>
 </html>
