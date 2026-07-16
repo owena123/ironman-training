@@ -725,9 +725,9 @@ function osWeek(num,title,sub,hrs,bikeThu,bikeSat,tuRun,gymTier,open=false){
   ],open);
 }
 const osData=[];
-osData.push(osWeek(1,'Week 1 — Start Here','Build the habit. Easy across the board.','~8 hrs','80 min · 2×12 min tempo','2.5 hrs','45 min easy','full',true));
-osData.push(osWeek(2,'Week 2','Run and ride edges up.','~8.5 hrs','85 min · 2×15 min tempo','3 hrs','50 min easy','full'));
-osData.push(osWeek(3,'Week 3','Gym still full strength. Bike longest yet.','~9 hrs','90 min · 3×12 min tempo','3.5 hrs','55 min easy','full'));
+osData.push(osWeek(1,'Week 1 — Start Here','Build the habit. Easy across the board.','~8 hrs','80 min · 10wu + 4×12 min tempo (76–85% FTP) + 3 rest + 11cd','2.5 hrs','45 min easy','full',true));
+osData.push(osWeek(2,'Week 2','Run and ride edges up.','~8.5 hrs','80 min · 10wu + 3×16 min tempo + 4 min rest between + 14cd','3 hrs','50 min easy','full'));
+osData.push(osWeek(3,'Week 3','Gym still full strength. Bike longest yet.','~9 hrs','80 min · 10wu + 4×12 min tempo + 3 min rest between + 11cd','3.5 hrs','55 min easy','full'));
 osData.push(buildWeek(4,'Week 4 — Recovery','Pull back. Gym recovery sets only.','~6 hrs',[
   day('MON','5–6am / PM',[gymRun(15),gymAnt('recov')]),
   day('TUE','5–6am',[sess('run','🏃 Easy Run – 35 min','Zone 2.',[tag('t-run','Run'),tag('t-z2','Zone 2')])]),
@@ -737,13 +737,13 @@ osData.push(buildWeek(4,'Week 4 — Recovery','Pull back. Gym recovery sets only
   day('SAT','Morning',[sess('bike','🚴 Long Ride – 2 hrs Zone 2','Short this week.',[tag('t-bike','Long Ride'),tag('t-z2','Zone 2')])]),
   day('SUN','🛌 FULL REST',[rest('Recovery week AND rest day. Sleep extra.')])
 ]));
-osData.push(osWeek(5,'Week 5','Power phase begins in gym. Concentric faster.','~9 hrs','90 min · 3×15 min tempo','3.5 hrs','55 min easy','power'));
-osData.push(osWeek(6,'Week 6','Long ride hits 4 hrs. Peak off-season week.','~10 hrs','95 min · 2×20 min tempo','4 hrs','60 min easy','power'));
+osData.push(osWeek(5,'Week 5','Power phase begins in gym. Concentric faster.','~9 hrs','80 min · 10wu + 3×16 min tempo + 4 min rest between + 14cd','3.5 hrs','55 min easy','power'));
+osData.push(osWeek(6,'Week 6','Long ride hits 4 hrs. Peak off-season week.','~10 hrs','80 min · 10wu + 2×22 min tempo + 5 min rest between + 13cd','4 hrs','60 min easy','power'));
 osData.push(buildWeek(7,'Week 7 — Bridge to Base','Wind down. Pool opens Aug 21.','~8 hrs',[
   day('MON','5–6am / PM',[gymRun(20),gymAnt('power')]),
   day('TUE','5–6:30am',[sess('run','🏃 Run – 50 min easy','Zone 2.',[tag('t-run','Run'),tag('t-z2','Zone 2')])]),
   day('WED','5–6am / PM',[gymRun(25),gymPost('power')]),
-  day('THU','5–6:30am',[sess('bike','🚴 Bike – 80 min · 2×15 min tempo','Last tempo ride before base phase.',[tag('t-bike','Bike'),tag('t-z3','Tempo')])]),
+  day('THU','5–6:30am',[sess('bike','🚴 Bike – 80 min · 10wu + 3×16 min tempo + 4 rest between + 14cd','Last tempo ride before base phase.',[tag('t-bike','Bike'),tag('t-z3','Tempo')])]),
   day('FRI','5–6am / PM',[gymRun(20),gymLegs('power')]),
   day('SAT','Morning',[
     sess('bike','🚴 Long Ride – 3 hrs Zone 2','Last ride before Base Phase begins.',[tag('t-bike','Long Ride'),tag('t-z2','Zone 2')]),
@@ -795,20 +795,20 @@ function baseWeek(num,title,sub,hrs,bikeTue,bikeWed,swThuAM,swThuPM,runThu,bikeS
 const bsData=[];
 // W1–4: full/power gym. Tue = Zone 2 bike (SS from W3). Thu = run + double swim.
 bsData.push(baseWeek(1,'Week 1 — Pool Unlocked','3 bike sessions/wk from day 1. CSS swim starts.','~11 hrs',
-  '75 min Zone 2 (no intervals yet — build feel first)','85 min Zone 2',
+  '80 min Zone 2 steady — no intervals yet, build feel and fueling habits','85 min Zone 2',
   '50 min · Drills 400 + 10×100 CSS 15s rest + 200 cool','45 min · 1,800 yds endurance 200s',
   '55 min · 3×8 min tempo','2.5 hrs','65 min','full',true));
 bsData.push(baseWeek(2,'Week 2','CSS grows. Strides added.','~11.5 hrs',
-  '80 min Zone 2','90 min Zone 2',
+  '80 min Zone 2 steady','80 min Zone 2 steady',
   '55 min · Drills 400 + 12×100 CSS + 200 cool','45 min · 2,000 yds 200s',
   '60 min · 3×10 min tempo + 4 strides','2.5 hrs','70 min','full',false));
 bsData.push(baseWeek(3,'Week 3','Sweet spot on Tue bike begins.','~12 hrs',
-  '90 min · 2×15 min @ 88–92% FTP','90 min Zone 2',
+  '80 min · 10wu + 3×15 min @ 88–92% FTP + 4 rest between + 15cd','80 min Zone 2 steady',
   '55 min · Drills 400 + 12×100 CSS + cool','50 min · 2,100 yds 300s',
   '60 min · 2×15 min tempo + 4 strides','3 hrs','70 min','full',false));
 bsData.push(buildWeek(4,'Week 4 — Recovery','Pull back 35%. 3 bikes still, shorter.','~8 hrs',[
   day('MON','5–6am / PM',[gymRun(15),gymAnt('recov')]),
-  day('TUE','5–6am',[sess('bike','🚴 Bike – 60 min Zone 2','Easy recovery bike.',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('TUE','5–6am',[sess('bike','🚴 Bike – 60 min Zone 2 steady','Easy recovery ride — conversational pace the whole way.',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
   day('WED','5–6:30am / PM',[
     sess('bike','🚴 Bike – 60 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')]),
     gymPost('recov')
@@ -824,22 +824,22 @@ bsData.push(buildWeek(4,'Week 4 — Recovery','Pull back 35%. 3 bikes still, sho
 ]));
 // W5–8: maintenance gym
 bsData.push(baseWeek(5,'Week 5','Gym → maintenance. SS intervals grow.','~12 hrs',
-  '90 min · 2×18 min @ 88–92% FTP','95 min Zone 2',
+  '80 min · 10wu + 3×16 min @ 88–92% FTP + 4 rest between + 15cd','80 min Zone 2 steady',
   '60 min · Drills 400 + 14×100 CSS + cool','50 min · 2,200 yds 300–400s',
   '65 min · 2×18 min tempo + 6 strides','3 hrs','70 min','maint',false));
 bsData.push(baseWeek(6,'Week 6','Long ride grows to 3.5 hrs.','~12.5 hrs',
-  '95 min · 3×12 min @ 90–94% FTP','100 min Zone 2',
+  '80 min · 10wu + 3×15 min @ 90–94% FTP + 4 rest between + 15cd','80 min Zone 2 steady',
   '60 min · Drills 400 + 14×100 CSS + cool','50 min · 2,300 yds 400s',
   '65 min · 2×20 min tempo + 6 strides','3.5 hrs','75 min','maint',false));
 bsData.push(baseWeek(7,'Week 7','Long run hits 80 min.','~13 hrs',
-  '95 min · 2×22 min @ 88–92% FTP','100 min Zone 2',
+  '80 min · 10wu + 2×22 min @ 88–92% FTP + 5 rest between + 18cd','80 min Zone 2 steady',
   '65 min · Drills 400 + 16×100 CSS + cool','55 min · 2,400 yds 400s',
   '70 min · 3×15 min tempo + 6 strides','3.5 hrs','80 min','maint',false));
 bsData.push(buildWeek(8,'Week 8 — Recovery','Mid-base rest. 3 bikes still, shorter.','~8.5 hrs',[
   day('MON','5–6am / PM',[gymRun(20),gymAnt('recov')]),
-  day('TUE','5–6am',[sess('bike','🚴 Bike – 65 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('TUE','5–6am',[sess('bike','🚴 Bike – 60 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
   day('WED','5–6:30am / PM',[
-    sess('bike','🚴 Bike – 65 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')]),
+    sess('bike','🚴 Bike – 60 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')]),
     gymPost('recov')
   ]),
   day('THU','AM · PM',[
@@ -853,22 +853,22 @@ bsData.push(buildWeek(8,'Week 8 — Recovery','Mid-base rest. 3 bikes still, sho
 ]));
 // W9–13: light maintenance gym
 bsData.push(baseWeek(9,'Week 9','Gym → light maintenance.','~12.5 hrs',
-  '100 min · 2×25 min @ 88–92% FTP','105 min Zone 2',
+  '80 min · 10wu + 2×22 min @ 88–92% FTP + 5 rest between + 18cd','80 min Zone 2 steady',
   '65 min · Drills 400 + 16×100 CSS + cool','55 min · 2,500 yds 400–500s',
   '70 min · 3×18 min tempo + 6 strides','3.5 hrs','80 min','maint',false));
 bsData.push(baseWeek(10,'Week 10','Swim yardage climbing.','~13 hrs',
-  '100 min · 1×35 min @ 88% FTP','105 min Zone 2',
+  '80 min · 20wu + 1×45 min @ 88% FTP + 15cd','80 min Zone 2 steady',
   '65 min · 18×100 CSS + cool','55 min · 2,600 yds 500s',
   '75 min · 3×18 min tempo + 8 strides','3.5 hrs','80 min','maint',false));
 bsData.push(baseWeek(11,'Week 11','Last big base week. 3 strong bike sessions.','~13.5 hrs',
-  '105 min · 2×25 min @ 90–94% FTP','110 min Zone 2',
+  '80 min · 10wu + 2×25 min @ 90–94% FTP + 5 rest between + 15cd','80 min Zone 2 steady',
   '70 min · 18×100 CSS + cool','60 min · 2,700 yds 500s',
   '75 min · 2×22 min tempo + 8 strides','3.5 hrs','80 min','maint',false));
 bsData.push(buildWeek(12,'Week 12 — Recovery','Third rest week.','~9 hrs',[
   day('MON','5–6am / PM',[gymRun(20),gymAnt('recov')]),
-  day('TUE','5–6am',[sess('bike','🚴 Bike – 65 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('TUE','5–6am',[sess('bike','🚴 Bike – 60 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
   day('WED','5–6:30am / PM',[
-    sess('bike','🚴 Bike – 65 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')]),
+    sess('bike','🚴 Bike – 60 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')]),
     gymPost('recov')
   ]),
   day('THU','AM · PM',[
@@ -881,7 +881,7 @@ bsData.push(buildWeek(12,'Week 12 — Recovery','Third rest week.','~9 hrs',[
   day('SUN','Morning',[sess('run','🏃 Run – 60 min easy','',[tag('t-run','Run'),tag('t-z2','Zone 2')])])
 ]));
 bsData.push(baseWeek(13,'Week 13 — Bridge to Build','Last base week. 3 bike sessions strong.','~11.5 hrs',
-  '95 min · 2×20 min @ 90% FTP','95 min Zone 2',
+  '80 min · 10wu + 2×22 min @ 90% FTP + 5 rest between + 13cd','80 min Zone 2 steady',
   '65 min · 16×100 CSS + cool','55 min · 2,500 yds 400s',
   '70 min · 2×20 min tempo + 6 strides','3 hrs','75 min','maint',false));
 document.getElementById('base-weeks').innerHTML=bsData.join('');
@@ -924,25 +924,25 @@ function buildWeekStd(num,title,sub,hrs,bikeTue,bikeWed,swThuAM,swThuPM,runThu,b
 }
 const bdData=[];
 bdData.push(buildWeekStd(1,'Week 1 — Build Begins','3 bike sessions. VO2 starts. Full gym.','~12 hrs',
-  '90 min · 5×4 min @ 110–115% FTP','90 min Zone 2',
+  '80 min · 10wu + 7×4 min @ 110–115% FTP + 4 min rest between + 15cd','80 min Zone 2 steady',
   '60 min · 14×100 CSS + 4×200 race pace','55 min · 2,500 yds 400s',
   '75 min · 3×12 min threshold',
   '3 hr ride @ 75–80% FTP','25 min @ HM pace','85 min','full',true));
 bdData.push(buildWeekStd(2,'Week 2','VO2 harder. Brick run grows.','~12.5 hrs',
-  '90 min · 6×3 min @ 115–120% FTP','95 min Zone 2',
+  '80 min · 10wu + 9×3 min @ 115–120% FTP + 3 min rest between + 15cd','80 min Zone 2 steady',
   '60 min · 16×100 CSS + 4×200 race pace','55 min · 2,600 yds 400s',
   '75 min · 3×15 min threshold',
   '3.5 hr ride @ 78–82% FTP','30 min @ HM pace','85 min','full'));
 bdData.push(buildWeekStd(3,'Week 3','Longest brick yet. 3 strong bike days.','~13 hrs',
-  '95 min · 4×5 min @ 108–112% FTP','100 min Zone 2',
+  '80 min · 10wu + 5×5 min @ 108–112% FTP + 5 min rest between + 20cd','80 min Zone 2 steady',
   '65 min · 16×100 CSS + 4×200 race pace','55 min · 2,700 yds 500s',
   '80 min · 3×18 min threshold',
   '3.5 hr ride @ 78–82% FTP','35 min @ HM pace','90 min','full'));
 bdData.push(buildWeek(4,'Week 4 — Recovery','3 bikes still, shorter.','~8.5 hrs',[
   day('MON','5–6am / PM',[gymRun(20),gymAnt('recov')]),
-  day('TUE','5–6am',[sess('bike','🚴 Bike – 65 min Zone 2','Recovery bike.',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('TUE','5–6am',[sess('bike','🚴 Bike – 60 min Zone 2','Recovery ride — easy conversational pace.',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
   day('WED','5–6:30am / PM',[
-    sess('bike','🚴 Bike – 65 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')]),
+    sess('bike','🚴 Bike – 60 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')]),
     gymPost('recov')
   ]),
   day('THU','AM · PM',[
@@ -955,25 +955,25 @@ bdData.push(buildWeek(4,'Week 4 — Recovery','3 bikes still, shorter.','~8.5 hr
   day('SUN','Morning',[sess('run','🏃 Run – 70 min easy','',[tag('t-run','Run'),tag('t-z2','Zone 2')])])
 ]));
 bdData.push(buildWeekStd(5,'Week 5','Long run 90 min. Legs gym drops.','~13 hrs',
-  '95 min · 5×4 min @ 110% FTP','100 min Zone 2',
+  '80 min · 10wu + 7×4 min @ 110% FTP + 4 min rest between + 15cd','80 min Zone 2 steady',
   '65 min · 16×100 CSS + 4×200 race pace','60 min · 2,800 yds 500s',
   '80 min · 2×22 min threshold',
   '3.5 hr ride @ 78–82% FTP','35 min @ HM pace','90 min','upper'));
 bdData.push(buildWeekStd(6,'Week 6','Brick ride 4 hrs.','~13.5 hrs',
-  '100 min · 3×8 min @ 112% FTP','100 min Zone 2',
+  '80 min · 10wu + 4×8 min @ 112% FTP + 4 min rest between + 17cd','80 min Zone 2 steady',
   '65 min · 18×100 CSS + 4×200 race pace','60 min · 2,900 yds 500s',
   '80 min · 3×20 min threshold',
   '4 hr ride @ 78–82% FTP','40 min @ HM pace','90 min','upper'));
 bdData.push(buildWeekStd(7,'Week 7','Biggest build week. Brick run 45 min.','~14 hrs',
-  '100 min · 2×12 min @ 92–95% FTP','105 min Zone 2',
+  '80 min · 10wu + 3×12 min @ 92–95% FTP + 5 min rest between + 18cd','80 min Zone 2 steady',
   '70 min · 18×100 CSS + 6×200 race pace','60 min · 3,000 yds 500s',
   '85 min · 3×20 min threshold',
   '4 hr ride @ 80–82% FTP','45 min @ HM pace','90 min','upper'));
 bdData.push(buildWeek(8,'Week 8 — Recovery','3 bikes still, shorter.','~9 hrs',[
   day('MON','5–6am / PM',[gymRun(20),gymAnt('recov')]),
-  day('TUE','5–6am',[sess('bike','🚴 Bike – 70 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('TUE','5–6am',[sess('bike','🚴 Bike – 60 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
   day('WED','5–6:30am / PM',[
-    sess('bike','🚴 Bike – 70 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')]),
+    sess('bike','🚴 Bike – 60 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')]),
     gymPost('recov')
   ]),
   day('THU','AM · PM',[
@@ -986,24 +986,24 @@ bdData.push(buildWeek(8,'Week 8 — Recovery','3 bikes still, shorter.','~9 hrs'
   day('SUN','Morning',[sess('run','🏃 Run – 75 min easy','',[tag('t-run','Run'),tag('t-z2','Zone 2')])])
 ]));
 bdData.push(buildWeekStd(9,'Week 9 — Feb: No Gym','All energy to tri. 3 bike sessions.','~14 hrs',
-  '105 min · 4×6 min @ 108% FTP','105 min Zone 2',
+  '80 min · 10wu + 5×6 min @ 108% FTP + 4 min rest between + 20cd','80 min Zone 2 steady',
   '70 min · 20×100 CSS + 6×200 race pace','65 min · 3,100 yds 600s',
   '85 min · 3×22 min threshold',
   '4 hr ride @ 80–83% FTP','50 min @ HM pace','90 min','none'));
 bdData.push(buildWeekStd(10,'Week 10','Long run 1:45. 3 bike sessions.','~14 hrs',
-  '105 min · 5×4 min @ 110% FTP','105 min Zone 2',
+  '80 min · 10wu + 7×4 min @ 110% FTP + 4 min rest between + 15cd','80 min Zone 2 steady',
   '70 min · 20×100 CSS + 6×200','65 min · 3,200 yds 600s',
   '85 min · 2×25 min threshold',
   '4 hr ride @ 80–83% FTP','50 min @ HM pace','1:45','none'));
 bdData.push(buildWeekStd(11,'Week 11','Brick run 55 min.','~14.5 hrs',
-  '110 min · 3×10 min @ 92–95% FTP','110 min Zone 2',
+  '80 min · 10wu + 4×10 min @ 92–95% FTP + 5 min rest between + 10cd','80 min Zone 2 steady',
   '75 min · 22×100 CSS + 6×200','65 min · 3,200 yds 600s',
   '85 min · 3×22 min threshold',
   '4 hr ride @ 80–85% FTP','55 min @ HM pace','1:45','none'));
 bdData.push(buildWeek(12,'Week 12 — Recovery','3 bikes, shorter.','~9.5 hrs',[
   day('MON','5–6am',[gymRun(20)]),
-  day('TUE','5–6am',[sess('bike','🚴 Bike – 70 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
-  day('WED','5–6:30am',[sess('bike','🚴 Bike – 70 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('TUE','5–6am',[sess('bike','🚴 Bike – 60 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('WED','5–6:30am',[sess('bike','🚴 Bike – 60 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
   day('THU','AM · PM',[
     sess('run','🏃 Easy Run – 55 min','Zone 2.',[tag('t-run','Run'),tag('t-z2','Zone 2')]),
     sess('swim','🏊 AM: Swim – 45 min · 12×100 CSS easy','',[tag('t-swim','Swim'),tag('t-css','CSS')]),
@@ -1014,17 +1014,17 @@ bdData.push(buildWeek(12,'Week 12 — Recovery','3 bikes, shorter.','~9.5 hrs',[
   day('SUN','Morning',[sess('run','🏃 Run – 80 min easy','',[tag('t-run','Run'),tag('t-z2','Zone 2')])])
 ]));
 bdData.push(buildWeekStd(13,'Week 13','Building to peak.','~14 hrs',
-  '110 min · 4×8 min @ 92–95% FTP','110 min Zone 2',
+  '80 min · 10wu + 4×8 min @ 92–95% FTP + 5 min rest between + 17cd','80 min Zone 2 steady',
   '75 min · 22×100 CSS + 8×200','65 min · 3,300 yds 700s',
   '90 min · 3×22 min threshold',
   '4 hr ride @ 80–83% FTP','55 min @ HM pace','1:45','none'));
 bdData.push(buildWeekStd(14,'Week 14','Biggest build volume.','~15 hrs',
-  '110 min · 5×4 min @ 110% FTP','110 min Zone 2',
+  '80 min · 10wu + 7×4 min @ 110% FTP + 4 min rest between + 15cd','80 min Zone 2 steady',
   '75 min · 24×100 CSS + 8×200','70 min · 3,400 yds 700s',
   '90 min · 2×28 min threshold',
   '4 hr ride @ 82–85% FTP','60 min @ HM pace','1:45','none'));
 bdData.push(buildWeekStd(15,'Week 15 — Bridge to Peak','Last build week.','~12.5 hrs',
-  '100 min · 3×10 min @ 92% FTP','100 min Zone 2',
+  '80 min · 10wu + 4×10 min @ 92% FTP + 5 min rest between + 10cd','80 min Zone 2 steady',
   '70 min · 20×100 CSS + 6×200','65 min · 3,100 yds 600s',
   '85 min · 2×25 min threshold',
   '3.5 hr ride @ 78–82% FTP','50 min @ HM pace','1:40','none'));
@@ -1036,7 +1036,7 @@ function peakWeekStd(num,title,sub,hrs,swTue,runWed,swWed,bikeThu,swFri,satSess,
     day('MON','🛌 Full Rest',[rest('No gym for the rest of the plan. Full rest every Monday in Peak.')]),
     day('TUE','5–6:30am · PM',[
       sess('swim',`🏊 AM: Race-Pace Swim – ${swTue}`,'Warm up 400 → main set at race pace → 200 cool. Race pace = the speed you will swim 1,900m on race day.',[tag('t-swim','Swim'),tag('t-css','Race Pace')]),
-      sess('bike','🚴 PM: 80 min · 2×20 min @ 80–85% FTP','After work. Sharp race-power intervals.',[tag('t-bike','Bike'),tag('t-ss','Race Power')])
+      sess('bike','🚴 PM: Threshold Bike – 80 min · 10wu + 2×22 min @ 80–85% FTP + 5 rest + 11cd','After work. Sharp race-power intervals.',[tag('t-bike','Bike'),tag('t-ss','Race Power')])
     ]),
     day('WED','5–6:30am · PM',[
       sess('run',`🏃 AM: Threshold Run – ${runWed}`,'10 min warmup → race-pace half marathon intervals → 10 min cooldown.',[tag('t-run','Run'),tag('t-z3','Race Pace')]),
@@ -1059,11 +1059,11 @@ function peakWeekStd(num,title,sub,hrs,swTue,runWed,swWed,bikeThu,swFri,satSess,
 const pkData=[];
 pkData.push(peakWeekStd(1,'Week 1 — Peak Begins','No gym. Race intensity on everything.','~11.5 hrs',
   '60 min · 8×200 + 4×400 race pace','85 min · 3×15 min @ HM pace',
-  '40 min easy','95 min @ 78–82% FTP','30 min easy',
+  '40 min easy','80 min @ 78–82% FTP sustained — no intervals, hold race power','30 min easy',
   '3.5 hr ride @ 78–82% FTP → 45 min @ HM pace','1:45',true));
 pkData.push(peakWeekStd(2,'Week 2','Swim grows. Brick run pace maintained.','~12 hrs',
   '65 min · 10×200 + 4×400 race pace','85 min · 3×18 min @ HM pace',
-  '40 min easy','100 min @ 80–82% FTP','30 min easy',
+  '40 min easy','80 min @ 80–82% FTP sustained — race power','30 min easy',
   '3.5 hr ride @ 80–82% FTP → 50 min @ HM pace','1:45'));
 pkData.push(buildWeek(3,'Week 3 — SIM DAY #1 ⭐','Most important session of the entire year.','~13 hrs',[
   day('MON','🛌 Full Rest',[rest()]),
@@ -1075,7 +1075,7 @@ pkData.push(buildWeek(3,'Week 3 — SIM DAY #1 ⭐','Most important session of t
     sess('run','🏃 AM: 85 min · 3×18 min HM pace','',[tag('t-run','Run'),tag('t-z3','Race Pace')]),
     sess('swim','🏊 PM: Easy swim 40 min','',[tag('t-swim','Swim'),tag('t-z1','Easy')])
   ]),
-  day('THU','5–6:30am',[sess('bike','🚴 95 min @ race power','',[tag('t-bike','Bike'),tag('t-ss','Race Power')])]),
+  day('THU','5–6:30am',[sess('bike','🚴 Race-Power Ride – 80 min sustained @ 78–83% FTP','',[tag('t-bike','Bike'),tag('t-ss','Race Power')])]),
   day('FRI','Rest',[rest('Carb load dinner. Kit packed. 9 hrs sleep.')]),
   day('SAT','ALL DAY',[
     sess('brick','🧱 ⭐ SIM DAY #1: 1.2mi open water swim → 56mi @ 78–83% FTP → full 13.1mi @ HM race pace','THE most important workout of the year. Treat it exactly like race day. Same breakfast. Same nutrition. Same kit. Pace swim relaxed, bike at target power, run first mile easy then build to race pace.',[tag('t-swim','Swim'),tag('t-bike','Bike'),tag('t-run','Run'),tag('t-brick','SIM DAY')])
@@ -1084,7 +1084,7 @@ pkData.push(buildWeek(3,'Week 3 — SIM DAY #1 ⭐','Most important session of t
 ]));
 pkData.push(buildWeek(4,'Week 4 — Recovery','Recover from Sim Day.','~9 hrs',[
   day('MON','🛌 Full Rest',[rest()]),
-  day('TUE','5–6am',[sess('bike','🚴 75 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
+  day('TUE','5–6am',[sess('bike','🚴 Bike – 60 min Zone 2','',[tag('t-bike','Bike'),tag('t-z2','Zone 2')])]),
   day('WED','5–6am',[sess('swim','🏊 45 min · 8×200 easy','',[tag('t-swim','Swim'),tag('t-z1','Easy')])]),
   day('THU','5–6am',[sess('run','🏃 60 min easy','',[tag('t-run','Run'),tag('t-z1','Easy')])]),
   day('FRI','Rest',[rest()]),
@@ -1093,11 +1093,11 @@ pkData.push(buildWeek(4,'Week 4 — Recovery','Recover from Sim Day.','~9 hrs',[
 ]));
 pkData.push(peakWeekStd(5,'Week 5','Full load returns.','~12.5 hrs',
   '65 min · 10×200 + 4×400 race pace','85 min · 4×15 min @ HM pace',
-  '40 min easy','100 min @ 80–83% FTP','30 min easy',
+  '40 min easy','80 min @ 80–83% FTP sustained','30 min easy',
   '4 hr ride @ 80–83% FTP → 55 min @ HM pace','1:50'));
 pkData.push(peakWeekStd(6,'Week 6','Biggest peak volume week.','~13 hrs',
   '70 min · 12×200 + 4×400 race pace','90 min · 4×18 min @ HM pace',
-  '45 min easy','105 min @ 80–83% FTP','35 min easy',
+  '45 min easy','80 min @ 80–83% FTP sustained','35 min easy',
   '4 hr ride @ 82–85% FTP → 55 min @ HM pace','1:50'));
 pkData.push(buildWeek(7,'Week 7 — SIM DAY #2 ⭐','Final simulation. Race dress rehearsal.','~13.5 hrs',[
   day('MON','🛌 Full Rest',[rest()]),
@@ -1109,7 +1109,7 @@ pkData.push(buildWeek(7,'Week 7 — SIM DAY #2 ⭐','Final simulation. Race dres
     sess('run','🏃 AM: 90 min · 4×18 min HM pace','',[tag('t-run','Run'),tag('t-z3','Race Pace')]),
     sess('swim','🏊 PM: Easy swim 40 min','',[tag('t-swim','Swim'),tag('t-z1','Easy')])
   ]),
-  day('THU','5–6:30am',[sess('bike','🚴 100 min @ race power','',[tag('t-bike','Bike'),tag('t-ss','Race Power')])]),
+  day('THU','5–6:30am',[sess('bike','🚴 Race-Power Ride – 80 min sustained @ 78–83% FTP','',[tag('t-bike','Bike'),tag('t-ss','Race Power')])]),
   day('FRI','Rest',[rest('Last Sim Day tomorrow. Carb load. Sleep 9 hrs.')]),
   day('SAT','ALL DAY',[
     sess('brick','🧱 ⭐ SIM DAY #2 — FINAL: 1.2mi swim → 56mi @ race power → full 13.1mi @ HM race pace','Race execution rehearsal. You know this. Execute.',[tag('t-swim','Swim'),tag('t-bike','Bike'),tag('t-run','Run'),tag('t-brick','SIM DAY')])
@@ -1127,11 +1127,11 @@ pkData.push(buildWeek(8,'Week 8 — Recovery → Taper Bridge','Volume drops, br
 ]));
 pkData.push(peakWeekStd(9,'Week 9','Building back.','~12 hrs',
   '60 min · 10×200 race pace','80 min · 3×15 min @ HM pace',
-  '40 min easy','90 min @ race power','30 min easy',
+  '40 min easy','80 min @ race power (78–83% FTP) sustained','30 min easy',
   '3.5 hr ride @ 80% FTP → 50 min @ HM pace','1:45'));
 pkData.push(peakWeekStd(10,'Week 10','Second to last hard week.','~12 hrs',
   '60 min · 10×200 race pace','80 min · 2×22 min @ HM pace',
-  '40 min easy','90 min @ race power','30 min easy',
+  '40 min easy','80 min @ race power (78–83% FTP) sustained','30 min easy',
   '3.5 hr ride @ 80–82% FTP → 50 min @ HM pace','1:45'));
 pkData.push(buildWeek(11,'Week 11 — Peak Wrap','Last week before taper.','~10 hrs',[
   day('MON','🛌 Full Rest',[rest()]),
